@@ -4,8 +4,17 @@ import {useState} from "react"
 
 function SelectPlayers(props){
 
-    const [valueSelect, setValueSelect] = useState("people")
-    props.setValueSelectPlayers(valueSelect)
+    const [valueSelect, setValueSelect] = useState("")
+// let valueSelectThis = valueSelect
+
+
+const  handlerSelectPlayers = ()=>{
+// props.setValueSelectPlayers(valueSelectThis)
+// props.setOnSelectPlayers(true)
+// console.log(valueSelectThis)
+console.log(false)
+}
+
     
 
 
@@ -21,6 +30,9 @@ return(
 <input type="radio" id="robot" name="vs" onClick={(e)=>setValueSelect(e.target.value)} value="robot"  />
 <label for="robot" >People vs Robot</label>
 </div>
+    </div>
+    <div>
+    <button className="tap-how-many-players" onClick={handlerSelectPlayers()}>Select</button>
     </div>
 </div>
 )
