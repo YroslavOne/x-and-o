@@ -16,11 +16,11 @@ export const ContextProvider = ({ children }) => {
     let valueCell = [
         {
             id: 1,
-            value: null
+            value: 1
         },
         {
             id: 2,
-            value: null
+            value: 2
         },
         {
             id: 3,

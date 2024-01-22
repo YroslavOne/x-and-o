@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { Context } from "../Context"
+import "./lineForField.css"
 
 function LineForField(props){
 const {tapOnCell, cell} = useContext(Context)
@@ -9,7 +10,7 @@ const {tapOnCell, cell} = useContext(Context)
         tapOnCell(id)
     }
 return(
-<li id={props.id} onClick={(e)=>tap(e.target.id)}>{props.value}</li>
+<li className="call" id={props.id} onClick={(e)=>tap(e.target.id)}>{props.value}</li>
 )
 }
 export default LineForField

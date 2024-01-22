@@ -1,6 +1,7 @@
 import LineForField from "./field/LineForField"
 import { useContext } from "react"
 import { Context } from "./Context"
+import './field.css'
 
 function Feild(){
 
@@ -8,8 +9,8 @@ function Feild(){
    console.log(cell)
 
 return(
-    <div>
-        <ul>
+    <div className="field">
+        <ul className="field-cell">
         {cell.map((objCell)=>(
           <LineForField id={objCell.id} value={objCell.value} /> ))}
         </ul>
