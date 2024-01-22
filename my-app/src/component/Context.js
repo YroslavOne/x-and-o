@@ -73,7 +73,7 @@ export const ContextProvider = ({ children }) => {
 
 
 function tapOnCell(id){
-    localStorage.Cell=JSON.stringify(ButtonForXorO(id, cell, nextOorX))
+    localStorage.Cell=JSON.stringify(ButtonForXorO(id, cell, nextOorX, setNextOorX))
 setCell(JSON.parse(localStorage.Cell))
 // console.log(cell)
 }
