@@ -5,13 +5,13 @@ import './field.css'
 
 function Feild(){
 
-   const { cell }= useContext(Context)
-   console.log(cell)
+   const { cellList }= useContext(Context)
+//    console.log(cell)
 
 return(
     <div className="field">
         <ul className="field-cell">
-        {cell.map((objCell)=>(
+        {cellList.map((objCell)=>(
           <LineForField id={objCell.id} value={objCell.value} /> ))}
         </ul>
         </div>
