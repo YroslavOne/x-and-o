@@ -1,6 +1,6 @@
 import LineForField from "./field/LineForField"
 import { useContext } from "react"
-import { Context } from "./Context"
+import { Context } from "../Context"
 import './field.css'
 
 function Feild(){

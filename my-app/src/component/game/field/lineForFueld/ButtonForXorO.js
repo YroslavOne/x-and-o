@@ -1,4 +1,4 @@
-function ButtonForXorO(id, cellList, nextOorX, setNextOorX){
+function ButtonForXorO(id, cellList, nextOorX, setNextOorX, newGame){
 
 
 function changeOandX(){
@@ -15,6 +15,7 @@ function changeOandX(){
 
 
 let allCell = []
+if (newGame===true){
 cellList.map((objAllCell)=>{
     if(objAllCell.id ===Number(id)){
         if(objAllCell.value==="X" ||objAllCell.value==="O" ){
@@ -31,11 +32,13 @@ cellList.map((objAllCell)=>{
         
 
     } else{
-        // console.log("neok")
         allCell.push(objAllCell)
     }
  
 })
+} else{
+    allCell = cellList
+}
 
 return allCell
     

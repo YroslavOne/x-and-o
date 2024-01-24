@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import ButtonForXorO from './field/lineForFueld/ButtonForXorO';
-import Won from './field/lineForFueld/Won';
+import ButtonForXorO from './game/field/lineForFueld/ButtonForXorO';
+import Won from './game/field/lineForFueld/Won';
+import DataCells from '../DataCells';
 // import Score from './field/lineForFueld.js/Score';
 // import { v4 as uuidv4 } from 'uuid';
 
@@ -11,56 +12,12 @@ export const Context = React.createContext({
   setNextOorX: () => {},
   scoreList: null,
   setScoreList:()=>{},
+  newGame: null,
+  setNewGame: ()=>{},
 });
 
 export const ContextProvider = ({ children }) => {
-  let cells = [
-    {
-      id: 1,
-      value: null,
-      filled: false,
-    },
-    {
-      id: 2,
-      value: null,
-      filled: false,
-    },
-    {
-      id: 3,
-      value: null,
-      filled: false,
-    },
-    {
-      id: 4,
-      value: null,
-      filled: false,
-    },
-    {
-      id: 5,
-      value: null,
-      filled: false,
-    },
-    {
-      id: 6,
-      value: null,
-      filled: false,
-    },
-    {
-      id: 7,
-      value: null,
-      filled: false,
-    },
-    {
-      id: 8,
-      value: null,
-      filled: false,
-    },
-    {
-      id: 9,
-      value: null,
-      filled: false,
-    },
-  ];
+  let cells = DataCells;
   let scores = {X: 0, O: 0, deadHeat: 0}
   if (localStorage?.CellList) {
   } else {
@@ -74,10 +31,18 @@ export const ContextProvider = ({ children }) => {
 } else {
   localStorage.Scores = JSON.stringify(scores);
 }
+if (localStorage?.NewGame) {
+} else {
+  localStorage.setItem('NewGame', 'true');
+}
 
   const [cellList, setCellList] = useState(cells);
   const [nextOorX, setNextOorX] = useState('X');
   const [scoreList, setScoreList] = useState(scores);
+  const [newGame, setNewGame] = useState(true);
+
+  localStorage.Scores = JSON.stringify(scoreList);
+  localStorage.NewGame = newGame;
 
 function updateCellList(cellsList){
 localStorage.CellList=JSON.stringify(cellsList)
@@ -88,9 +53,10 @@ setCellList(cellsList);
 
 
   function tapOnCell(id) {
-    let updatedCellList = ButtonForXorO(id, cellList, nextOorX, setNextOorX)
+    let updatedCellList = ButtonForXorO(id, cellList, nextOorX, setNextOorX, newGame)
     updateCellList(updatedCellList);
-    Won(JSON.parse(localStorage.CellList))
+
+    Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
   }
 
   localStorage.setItem('NextOorX', nextOorX);
@@ -103,7 +69,9 @@ setCellList(cellsList);
         nextOorX,
         setNextOorX,
         tapOnCell,
-        updateCellList
+        scoreList,
+        updateCellList,
+        setNewGame
       }}
     >
       {children}
