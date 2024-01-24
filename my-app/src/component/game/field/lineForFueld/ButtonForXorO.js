@@ -3,19 +3,14 @@ import PlayerCpu from "../../../PlayerCpu"
 // import { useContext } from "react"
 
 
-function ButtonForXorO(id, cellList, nextOorX, setNextOorX, playerNumber, setPlayerNumber, newGame, playerVs){
+function ButtonForXorO(id, cellList, nextOorX, newGame){
 
     // const {playerVs} = useContext(Context)
 
-function changeOandX(){
-    if(playerNumber===1){
-        setPlayerNumber(2)
-    } else {
-        setPlayerNumber(1)
-    }
+// function changeOandX(){
 
     
-}
+// }
 
 
 let allCell = []
@@ -31,7 +26,7 @@ cellList.map((objAllCell)=>{
                 value: nextOorX,
                 filled: true
             })
-            changeOandX()
+            // changeOandX()
         }
         
 
