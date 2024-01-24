@@ -1,7 +1,19 @@
-function ButtonForXorO(id, cellList, nextOorX, setNextOorX, newGame){
+// import { Context } from "../../../Context"
+import PlayerCpu from "../../../PlayerCpu"
+// import { useContext } from "react"
 
+
+function ButtonForXorO(id, cellList, nextOorX, setNextOorX, playerNumber, setPlayerNumber, newGame, playerVs){
+
+    // const {playerVs} = useContext(Context)
 
 function changeOandX(){
+    if(playerNumber===1){
+        setPlayerNumber(2)
+    } else {
+        setPlayerNumber(1)
+    }
+
     if(nextOorX==="X"){
         
         setNextOorX("O")

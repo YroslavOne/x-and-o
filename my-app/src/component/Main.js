@@ -5,16 +5,17 @@ import Game from "./Game"
 
 
 function Main(){
-const [openGame, setopenGame] = useState(true)
-const [onSelectPlayers, setOnSelectPlayers] = useState(true)
+const [openGame, setOpenGame] = useState(false)
+const [openSelectPlayers, setOpenSelectPlayers] = useState(true)
+// const [onSelectPlayers, setOnSelectPlayers] = useState(true)
 
 return(
   <div>
  <div> 
-  <Game/>
-     
+  {/* <Game/> */}
+     {openGame && (<Game/>)}
       </div>
-      {/* {onSelectPlayers &&(<SelectPlayers onSelectPlayers={onSelectPlayers} setValueSelectPlayers={setValueSelectPlayers} setOnSelectPlayers={setOnSelectPlayers}/>)}  */}
+      {openSelectPlayers &&(<SelectPlayers setOpenGame={setOpenGame} setOpenSelectPlayers={setOpenSelectPlayers}/>)} 
     </div>
 )
 }

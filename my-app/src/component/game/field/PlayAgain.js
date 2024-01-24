@@ -4,15 +4,16 @@ import DataCells from "../../../DataCells";
 
 function PlayAgain(){
 
-const {updateCellList, setNextOorX, setNewGame} = useContext(Context)
+const {setPlayerNumber, updateCellList,selectedFirst, setNextOorX, setNewGame} = useContext(Context)
 
 let cellList = DataCells;
 
 
 function clickPlayAgain(){
     updateCellList(cellList)
-    setNextOorX("X")
+    setNextOorX(selectedFirst)
     setNewGame(true)
+    setPlayerNumber(1)
 }
 
 return(
