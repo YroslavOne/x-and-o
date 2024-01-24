@@ -14,15 +14,7 @@ function changeOandX(){
         setPlayerNumber(1)
     }
 
-    if(nextOorX==="X"){
-        
-        setNextOorX("O")
-        
-    } else {
-        // localStorage.setItem("NextOorX", "X")
     
-        setNextOorX("X")
-    }
 }
 
 

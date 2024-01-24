@@ -77,14 +77,37 @@ setCellList(cellsList);
 
 // tapOnCell(PlayerCpu(cellList, playerNumber, playerVs, newGame))
 
+function changeOandX(valueOorX){
+  let valueXandO
+  if(valueOorX==="X"){
+    valueXandO ="O" 
+    setNextOorX(valueXandO)
+  
+    
+} else {
+    valueXandO ="X"
+    setNextOorX(valueXandO)
+    
+}
+return valueXandO
+}
+function changePlayNumber(){
+  if(playerNumber===1){
+    setPlayerNumber(2)
+} else {
+    setPlayerNumber(1)
+}
+}
 
   function tapOnCell(id) {
     let updatedCellList
-    updatedCellList = ButtonForXorO(id, cellList, nextOorX, setNextOorX, playerNumber, setPlayerNumber, newGame)
+    updatedCellList = ButtonForXorO(id, cellList, nextOorX, newGame)
+    changePlayNumber()
+    let nextSumbolForCell = changeOandX(nextOorX)
     updateCellList(updatedCellList);
     Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
     if(playerVs==="cpu" && newGame===true){
-      PlayerCpu(updatedCellList)
+      PlayerCpu(updatedCellList, nextSumbolForCell)
     // updateCellList(updatedCellList);
     // Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
   
