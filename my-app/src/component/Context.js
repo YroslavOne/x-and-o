@@ -52,12 +52,12 @@ if (localStorage?.PlayerNumber) {
 
   const [selectedFirst, setSelectedFirst] = useState("X")
   const [cellList, setCellList] = useState(cells);
-  const [nextOorX, setNextOorX] = useState(selectedFirst);
+  const [nextOorX, setNextOorX] = useState("X");
   const [scoreList, setScoreList] = useState(scores);
   const [newGame, setNewGame] = useState(true);
   const [playerVs, setPlayerVs] = useState(null)
   const [playerNumber, setPlayerNumber] = useState(1)
-
+  const [vBot, setVBot] = useState(1)
   // setNextOorX(selectedFirst)
 
 
@@ -72,10 +72,6 @@ localStorage.CellList=JSON.stringify(cellsList)
 setCellList(cellsList);
 }
 
-
-// PlayerCpu(cellList, playerNumber, playerVs, newGame)
-
-// tapOnCell(PlayerCpu(cellList, playerNumber, playerVs, newGame))
 
 function changeOandX(valueOorX){
   let valueXandO
@@ -99,6 +95,12 @@ function changePlayNumber(){
 }
 }
 
+if (selectedFirst==="O"){
+  setVBot(2)
+  console.log(vBot)
+}
+
+
   function tapOnCell(id) {
     let updatedCellList
     updatedCellList = ButtonForXorO(id, cellList, nextOorX, newGame)
@@ -107,10 +109,9 @@ function changePlayNumber(){
     updateCellList(updatedCellList);
     Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
     if(playerVs==="cpu" && newGame===true){
-      PlayerCpu(updatedCellList, nextSumbolForCell)
-    // updateCellList(updatedCellList);
-    // Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
-  
+      setTimeout(updateCellList(PlayerCpu(updatedCellList, nextSumbolForCell)), 1000)
+    Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
+    changeOandX(nextSumbolForCell)
       }
   }
 

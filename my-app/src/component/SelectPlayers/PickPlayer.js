@@ -1,12 +1,13 @@
 import { Context } from "../Context"
 import { useContext } from "react"
 
-function PickPlayer(){
-const {selectedFirst, setSelectedFirst, setNextOorX} = useContext(Context)
+function PickPlayer(props){
+const {selectedFirst, setSelectedFirst} = useContext(Context)
 
 function selectFirst(value){
     setSelectedFirst(value)
-    setNextOorX(value)
+    props.setOpenGame(true)
+props.setOpenSelectPlayers(false)
 }
 
     return(
