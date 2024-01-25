@@ -13,8 +13,6 @@ function updateCellList(index){
     updatedCellList = cellList
     
     updatedCellList[index].value = nextOorX
-    // console.log(updatedCellList)
-    // console.log(updatedCellList[index].value)
 }
 
 if (filterCellsList.length<=1){
@@ -23,7 +21,7 @@ if (filterCellsList[0].id!==5){
 } else {updateCellList(8)}
 } else {
     if(filterCellsList.length<=3){
-        console.log("3 клетка")
+        // console.log("3 клетка")
         defend()
     } else {
         if(filterCellsList.length<=5){
@@ -71,7 +69,7 @@ WinningData.map((objWinningData)=>{
         if(coincidencesForO===0){
 
             updateCellList(indexForOutput)
-            console.log(indexForOutput)
+            // console.log(indexForOutput)
             coincidencesForX=0
 
 
@@ -82,6 +80,10 @@ WinningData.map((objWinningData)=>{
         }
     }
 })
+if(coincidencesForX===1){
+    
+    console.log("нету победных комбинаций, переходим в нападение")
+}
 })
 }
 

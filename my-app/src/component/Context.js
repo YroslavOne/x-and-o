@@ -66,11 +66,14 @@ if (localStorage?.PlayerNumber) {
   localStorage.NextOorX = nextOorX;
   localStorage.PlayerNumber = playerNumber;
   localStorage.NewGame = newGame;
+localStorage.CellList=JSON.stringify(cellList)
 
-function updateCellList(cellsList){
-localStorage.CellList=JSON.stringify(cellsList)
-setCellList(cellsList);
-}
+
+// function updateCellList(cellsList){
+//   console.log(cellsList)
+// localStorage.CellList=JSON.stringify(cellsList)
+// setCellList(cellsList);
+// }
 
 
 function changeOandX(valueOorX){
@@ -106,10 +109,10 @@ if (selectedFirst==="O"){
     updatedCellList = ButtonForXorO(id, cellList, nextOorX, newGame)
     changePlayNumber()
     let nextSumbolForCell = changeOandX(nextOorX)
-    updateCellList(updatedCellList);
+    setCellList(updatedCellList);
     Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
     if(playerVs==="cpu" && newGame===true){
-      setTimeout(updateCellList(PlayerCpu(updatedCellList, nextSumbolForCell)), 1000)
+      setTimeout(setCellList(PlayerCpu(updatedCellList, nextSumbolForCell)), 1000)
     Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
     changeOandX(nextSumbolForCell)
       }
@@ -126,7 +129,6 @@ if (selectedFirst==="O"){
         setNextOorX,
         tapOnCell,
         scoreList,
-        updateCellList,
         setNewGame,
         selectedFirst,
         setSelectedFirst,
