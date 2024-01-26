@@ -46,17 +46,18 @@ function PlayerCpu(cellList, nextOorX) {
 
   function choiceOfOption() {
     let protectionTriggered = false
+    protectionTriggered = forwardToVictory()
+    if(protectionTriggered===false){
     protectionTriggered = defendsHimself()
-    // console.log(protectionTriggered)
-
-
     if(protectionTriggered===false){
         console.log(protectionTriggered)
         protectionTriggered = attack()
-        if(protectionTriggered ===false){
-
-        }
     }
+    } 
+    // console.log(protectionTriggered)
+
+
+    
   }
 
 
@@ -133,16 +134,43 @@ function PlayerCpu(cellList, nextOorX) {
     return protectionTriggered;
   }
   // if(filterOnliO[0].id===5){
-  //     if(filterOnliX[0].id===1){
+  
+  function forwardToVictory(){
+    let indexForOutput = 0;
+    let protectionTriggered = false
+    WinningData.map((objWinningData) => {
+        let coincidencesForX = 0;
+        let coincidencesForO = 0;
+        objWinningData.map((idWinningData) => {
+          let matchChecking = false;
+  
+          filterOnlyVillain.map((objFilterOnlyVillain) => {
+            if (idWinningData === objFilterOnlyVillain.id) {
+              coincidencesForX = coincidencesForX + 1;
+            }
+          });
+          filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
+            if (idWinningData === objFilterOnlyGoodSoul.id) {
+              coincidencesForO = +1;
+              matchChecking = true;
 
-  //     }
-  // }
+            }
+          });
+  
+          if (matchChecking === false) {
+            indexForOutput = idWinningData - 1;
+          }
+        });
+        if (coincidencesForO === 2 && coincidencesForX === 0 && protectionTriggered===false) {
+            updateCellList(indexForOutput)
+            protectionTriggered=true
+            console.log("you?")
+          return  protectionTriggered;
 
-  // if (filterCellsList[0].id===1){
-
-  // } else (filterCellsList[0].id===1 && filterCellsList[1].id===3){
-
-  // } else
+        }
+      });
+      return protectionTriggered;
+  }
 
   
 
