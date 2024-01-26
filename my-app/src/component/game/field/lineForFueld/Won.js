@@ -1,24 +1,29 @@
 function Won(cellList, scoreList, setScoreList, newGame, setNewGame){
-
+    let thisNewGame = true
    function score(winner){
+    
     if(newGame===true){
     if(winner==="X"){
         let valueX = scoreList.X +1
         setScoreList({X: valueX, O: scoreList.O, deadHeat: scoreList.deadHeat})
+        thisNewGame = false
         setNewGame(false)
     } else {
         if(winner==="O"){
             let valueO = scoreList.O +1
             setScoreList({X: scoreList.X, O: valueO, deadHeat: scoreList.deadHeat})
-            setNewGame(false)
+            thisNewGame = false
+        setNewGame(false)
         } else {
             let valueDeadHeat = scoreList.deadHeat +1
             setScoreList({X: scoreList.X, O: scoreList.O, deadHeat: valueDeadHeat})
+            thisNewGame = false
             setNewGame(false)
 
         }
     }
-}}
+}
+}
 
 
 
@@ -60,5 +65,7 @@ function Won(cellList, scoreList, setScoreList, newGame, setNewGame){
 }
     }
 }
+
+return thisNewGame
 }
 export default Won

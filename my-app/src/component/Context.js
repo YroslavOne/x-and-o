@@ -106,17 +106,24 @@ if (selectedFirst==="O"){
 
   function tapOnCell(id) {
     let updatedCellList
+    let thisNewGame
+    if(newGame===true){
     updatedCellList = ButtonForXorO(id, cellList, nextOorX, newGame)
     changePlayNumber()
     let nextSumbolForCell = changeOandX(nextOorX)
-    setCellList(updatedCellList);
-    Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
-    if(playerVs==="cpu" && newGame===true){
+    if(updatedCellList!==null){
+      setCellList(updatedCellList)
+      thisNewGame = Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
+    }
+    
+    if(playerVs==="cpu" && thisNewGame===true && updatedCellList!==null){
       setTimeout(setCellList(PlayerCpu(updatedCellList, nextSumbolForCell)), 1000)
-    Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
+      thisNewGame = Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
+    
+
     changeOandX(nextSumbolForCell)
       }
-  }
+}}
 
   localStorage.setItem('NextOorX', nextOorX);
 
