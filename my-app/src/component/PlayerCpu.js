@@ -79,7 +79,7 @@ function PlayerCpu(cellList, nextOorX) {
           });
           filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
             if (idWinningData === objFilterOnlyGoodSoul.id) {
-              coincidencesForO = +1;
+              coincidencesForO = coincidencesForO+1;
             }
           });
   
@@ -111,7 +111,7 @@ function PlayerCpu(cellList, nextOorX) {
 
     filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
         if (idWinningData === objFilterOnlyGoodSoul.id) {
-          coincidencesForO = +1;
+          coincidencesForO = coincidencesForO+1;
           matchChecking = true;
         }
       });
@@ -141,24 +141,37 @@ function PlayerCpu(cellList, nextOorX) {
     WinningData.map((objWinningData) => {
         let coincidencesForX = 0;
         let coincidencesForO = 0;
+        console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
         objWinningData.map((idWinningData) => {
+        console.log("idWinningData")
+        console.log(idWinningData)
+
           let matchChecking = false;
   
           filterOnlyVillain.map((objFilterOnlyVillain) => {
             if (idWinningData === objFilterOnlyVillain.id) {
               coincidencesForX = coincidencesForX + 1;
+        console.log("coincidencesForX")
+        console.log(coincidencesForX)
+
             }
           });
           filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
             if (idWinningData === objFilterOnlyGoodSoul.id) {
-              coincidencesForO = +1;
+              coincidencesForO = coincidencesForO + 1;
               matchChecking = true;
+              console.log("coincidencesForO")
+             console.log(coincidencesForO)
 
             }
           });
   
           if (matchChecking === false) {
             indexForOutput = idWinningData - 1;
+        console.log("indexForOutput")
+
+        console.log(indexForOutput)
+
           }
         });
         if (coincidencesForO === 2 && coincidencesForX === 0 && protectionTriggered===false) {
