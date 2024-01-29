@@ -1,5 +1,6 @@
 import { Context } from "../Context"
 import { useContext } from "react"
+import './pickPlayer.css'
 
 function PickPlayer(props){
 const {cellList, selectedFirst, setSelectedFirst, setWhoPlaysBot, botGoesFirst} = useContext(Context)

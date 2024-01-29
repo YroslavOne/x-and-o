@@ -47,10 +47,10 @@ if (localStorage?.PlayerVs) {
 } else {
   localStorage.setItem('PlayerVs', 'player');
 }
-if (localStorage?.PlayerNumber) {
-} else {
-  localStorage.setItem('PlayerNumber', 1);
-}
+// if (localStorage?.PlayerNumber) {
+// } else {
+//   localStorage.setItem('PlayerNumber', 1);
+// }
 
   const [selectedFirst, setSelectedFirst] = useState("X")
   const [cellList, setCellList] = useState(cells);
@@ -58,7 +58,7 @@ if (localStorage?.PlayerNumber) {
   const [scoreList, setScoreList] = useState(scores);
   const [newGame, setNewGame] = useState(true);
   const [playerVs, setPlayerVs] = useState(null)
-  const [playerNumber, setPlayerNumber] = useState(1)
+  // const [playerNumber, setPlayerNumber] = useState(1)
   // const [vBot, setVBot] = useState(1)
   const [whoPlaysBot, setWhoPlaysBot] = useState(null)
 
@@ -68,9 +68,9 @@ if (localStorage?.PlayerNumber) {
   localStorage.Scores = JSON.stringify(scoreList);
   localStorage.PlayerVs = playerVs;
   localStorage.NextOorX = nextOorX;
-  localStorage.PlayerNumber = playerNumber;
+  // localStorage.PlayerNumber = playerNumber;
   localStorage.NewGame = newGame;
-localStorage.CellList=JSON.stringify(cellList)
+  localStorage.CellList=JSON.stringify(cellList)
 
 
 // function updateCellList(cellsList){
@@ -79,13 +79,29 @@ localStorage.CellList=JSON.stringify(cellList)
 // setCellList(cellsList);
 // }
 
-function botGoesFirst(cellsList){
 
+function playAgain(cellwdsList){
+  if (whoPlaysBot==="X"){
+    console.log("whoPlaysBot")
+    botGoesFirst(cellwdsList)
+    setNextOorX("O")
+    setNewGame(true)
+  } else {
+    console.log(whoPlaysBot)
+
+    setNextOorX("X")
+    setNewGame(true)
+  }
+}
+
+function botGoesFirst(cellsList){
+//   let botPays =JSON.stringify(localStorage.WhoPlaysBot) 
+//   console.log(botPays)
+// if (botPays==="X"){
+  // console.log(nextOorX)
+// }
     setCellList(PlayerCpu(cellsList, "X", "X"))
     changeOandX(nextOorX)
-    console.log("cellList")
-    console.log(cellList)
-    console.log(nextOorX)
 }
 
 
@@ -104,13 +120,13 @@ function changeOandX(valueOorX){
 }
 return valueXandO
 }
-function changePlayNumber(){
-  if(playerNumber===1){
-    setPlayerNumber(2)
-} else {
-    setPlayerNumber(1)
-}
-}
+// function changePlayNumber(){
+//   if(playerNumber===1){
+//     setPlayerNumber(2)
+// } else {
+//     setPlayerNumber(1)
+// }
+// }
 
 // if (selectedFirst==="O"){
 //   // setVBot(2)
@@ -123,7 +139,7 @@ function changePlayNumber(){
     let thisNewGame
     if(newGame===true){
     updatedCellList = ButtonForXorO(id, cellList, nextOorX, newGame)
-    changePlayNumber()
+    // changePlayNumber()
     let nextSumbolForCell = changeOandX(nextOorX)
     if(updatedCellList!==null){
       setCellList(updatedCellList)
@@ -154,10 +170,11 @@ function changePlayNumber(){
         selectedFirst,
         setSelectedFirst,
         setPlayerVs,
-        playerNumber,
-        setPlayerNumber,
+        // playerNumber,
+        // setPlayerNumber,
         setWhoPlaysBot,
         botGoesFirst,
+        playAgain
       }}
     >
       {children}

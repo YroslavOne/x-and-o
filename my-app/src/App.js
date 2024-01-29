@@ -10,9 +10,11 @@ import { Context, ContextProvider } from './component/Context';
 function App() {
   // localStorage.clear()
   return(
+    <div className='app-main'>
     <ContextProvider>
 <Main/>
     </ContextProvider>
+    </div>
   )
     
 }

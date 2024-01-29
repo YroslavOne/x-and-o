@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function PlayAgain(){
 
-const {setPlayerNumber, setCellList, setNextOorX, setNewGame, botGoesFirst } = useContext(Context)
+const {playAgain, setCellList, setNextOorX, setNewGame, botGoesFirst } = useContext(Context)
 
 let cellList = [
     {
@@ -78,11 +78,10 @@ function clickPlayAgain(){
     
     
 
-    setNextOorX("X")
-    setNewGame(true)
-    setPlayerNumber(1)
-    botGoesFirst(cellList)
+   
+    
     setCellList(cellList)
+    playAgain(cellList)
 }
 
 return(

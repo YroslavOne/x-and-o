@@ -32,7 +32,9 @@ function PlayerCpu(cellList, nextOorX, whoPlaysBot) {
     updatedCellList[index].value = nextOorX;
     updatedCellList[index].key=uuidv4()
   }
-  console.log(filterCellsList)
+
+
+
 if(filterCellsList.length!==0){
   if (filterCellsList.length <= 1) {
     if (filterCellsList[0].id !== 5) {
@@ -42,12 +44,10 @@ if(filterCellsList.length!==0){
     }
   } else {
     if (filterCellsList.length <= 3) {
-      // console.log("3 клетка")
       choiceOfOption();
     } else {
       if (filterCellsList.length >= 4) {
         choiceOfOption()
-        // console.log('5 клетка');
       } 
     }
   }
@@ -61,8 +61,10 @@ if(filterCellsList.length!==0){
     if(protectionTriggered===false){
     protectionTriggered = defendsHimself()
     if(protectionTriggered===false){
-        console.log(protectionTriggered)
         protectionTriggered = attack()
+    if(protectionTriggered===false){
+        protectionTriggered = justMove()
+    }
     }
     } 
     // console.log(protectionTriggered)
@@ -105,8 +107,6 @@ if(filterCellsList.length!==0){
 
         }
       });
-    //   console.log("hi")
-    // protectionTriggered=true
       return protectionTriggered;
   }
 
@@ -137,14 +137,12 @@ if(filterCellsList.length!==0){
       });
       if (coincidencesForX === 0 && coincidencesForO >= 1 && protectionTriggered!==true) {
         updateCellList(indexForOutput)
-        console.log("chekinattack")
         protectionTriggered = true
         return protectionTriggered;
       }
     })
     return protectionTriggered;
   }
-  // if(filterOnliO[0].id===5){
   
   function forwardToVictory(){
     let indexForOutput = 0;
@@ -152,18 +150,13 @@ if(filterCellsList.length!==0){
     WinningData.map((objWinningData) => {
         let coincidencesForX = 0;
         let coincidencesForO = 0;
-        console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
         objWinningData.map((idWinningData) => {
-        console.log("idWinningData")
-        console.log(idWinningData)
 
           let matchChecking = false;
   
           filterOnlyVillain.map((objFilterOnlyVillain) => {
             if (idWinningData === objFilterOnlyVillain.id) {
               coincidencesForX = coincidencesForX + 1;
-        console.log("coincidencesForX")
-        console.log(coincidencesForX)
 
             }
           });
@@ -171,29 +164,36 @@ if(filterCellsList.length!==0){
             if (idWinningData === objFilterOnlyGoodSoul.id) {
               coincidencesForO = coincidencesForO + 1;
               matchChecking = true;
-              console.log("coincidencesForO")
-             console.log(coincidencesForO)
 
             }
           });
   
           if (matchChecking === false) {
             indexForOutput = idWinningData - 1;
-        console.log("indexForOutput")
-
-        console.log(indexForOutput)
 
           }
         });
         if (coincidencesForO === 2 && coincidencesForX === 0 && protectionTriggered===false) {
             updateCellList(indexForOutput)
             protectionTriggered=true
-            console.log("you?")
           return  protectionTriggered;
 
         }
       });
       return protectionTriggered;
+  }
+
+  function justMove(){
+    let protectionTriggered = false
+    cellList.map((objCellList)=>{
+        if(objCellList.filled===false && protectionTriggered===false){
+            updateCellList(objCellList.id-1)
+            protectionTriggered = true
+            
+        }
+    })
+    return protectionTriggered
+
   }
 
   
