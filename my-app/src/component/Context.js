@@ -18,7 +18,9 @@ export const Context = React.createContext({
   playerVs: null,
   setNewGame: ()=>{},
   playerNumber: 1,
-  setPlayerNumber: ()=> {}
+  setPlayerNumber: ()=> {},
+  whoPlaysBot: null,
+  setWhoPlaysBot: ()=>{},
 
 });
 
@@ -57,10 +59,12 @@ if (localStorage?.PlayerNumber) {
   const [newGame, setNewGame] = useState(true);
   const [playerVs, setPlayerVs] = useState(null)
   const [playerNumber, setPlayerNumber] = useState(1)
-  const [vBot, setVBot] = useState(1)
-  // setNextOorX(selectedFirst)
+  // const [vBot, setVBot] = useState(1)
+  const [whoPlaysBot, setWhoPlaysBot] = useState(null)
 
+  
 
+  localStorage.setItem('WhoPlaysBot', whoPlaysBot);
   localStorage.Scores = JSON.stringify(scoreList);
   localStorage.PlayerVs = playerVs;
   localStorage.NextOorX = nextOorX;
@@ -74,6 +78,16 @@ localStorage.CellList=JSON.stringify(cellList)
 // localStorage.CellList=JSON.stringify(cellsList)
 // setCellList(cellsList);
 // }
+
+function botGoesFirst(cellsList){
+
+    setCellList(PlayerCpu(cellsList, "X", "X"))
+    changeOandX(nextOorX)
+    console.log("cellList")
+    console.log(cellList)
+    console.log(nextOorX)
+}
+
 
 
 function changeOandX(valueOorX){
@@ -98,10 +112,10 @@ function changePlayNumber(){
 }
 }
 
-if (selectedFirst==="O"){
-  setVBot(2)
-  console.log(vBot)
-}
+// if (selectedFirst==="O"){
+//   // setVBot(2)
+//   console.log(vBot)
+// }
 
 
   function tapOnCell(id) {
@@ -117,7 +131,7 @@ if (selectedFirst==="O"){
     }
     
     if(playerVs==="cpu" && thisNewGame===true && updatedCellList!==null){
-      setTimeout(setCellList(PlayerCpu(updatedCellList, nextSumbolForCell)), 1000)
+      setTimeout(setCellList(PlayerCpu(updatedCellList, nextSumbolForCell, whoPlaysBot)), 1000)
       thisNewGame = Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
     
 
@@ -141,7 +155,9 @@ if (selectedFirst==="O"){
         setSelectedFirst,
         setPlayerVs,
         playerNumber,
-        setPlayerNumber
+        setPlayerNumber,
+        setWhoPlaysBot,
+        botGoesFirst,
       }}
     >
       {children}

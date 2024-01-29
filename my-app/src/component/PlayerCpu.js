@@ -3,9 +3,16 @@ import { v4 as uuidv4 } from 'uuid';
 
 // import { useContext } from "react"
 // import { Context } from "./Context"
-function PlayerCpu(cellList, nextOorX) {
-    let villain = "X"
-    let goodSoul = "O"
+function PlayerCpu(cellList, nextOorX, whoPlaysBot) {
+    let villain
+
+    if(whoPlaysBot==="O"){
+        villain="X"
+    } else {
+        villain="O"
+    }
+    
+    let goodSoul = whoPlaysBot
   let filterCellsList = cellList.filter(
     (filterCellList) => filterCellList.value !== null
   );
@@ -25,7 +32,8 @@ function PlayerCpu(cellList, nextOorX) {
     updatedCellList[index].value = nextOorX;
     updatedCellList[index].key=uuidv4()
   }
-
+  console.log(filterCellsList)
+if(filterCellsList.length!==0){
   if (filterCellsList.length <= 1) {
     if (filterCellsList[0].id !== 5) {
       updateCellList(4);
@@ -43,6 +51,9 @@ function PlayerCpu(cellList, nextOorX) {
       } 
     }
   }
+} else {
+    updateCellList(4);
+}
 
   function choiceOfOption() {
     let protectionTriggered = false

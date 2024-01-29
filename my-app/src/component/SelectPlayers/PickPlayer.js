@@ -2,12 +2,19 @@ import { Context } from "../Context"
 import { useContext } from "react"
 
 function PickPlayer(props){
-const {selectedFirst, setSelectedFirst} = useContext(Context)
+const {cellList, selectedFirst, setSelectedFirst, setWhoPlaysBot, botGoesFirst} = useContext(Context)
 
 function selectFirst(value){
     setSelectedFirst(value)
     props.setOpenGame(true)
 props.setOpenSelectPlayers(false)
+if(value==="X"){
+    setWhoPlaysBot("O")
+
+} else {
+    setWhoPlaysBot("X")
+    botGoesFirst(cellList)
+}
 }
 
     return(
