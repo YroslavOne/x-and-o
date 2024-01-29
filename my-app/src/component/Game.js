@@ -1,17 +1,16 @@
-import NextMove from "./game/field/NextMove"
-import Feild from "./game/Field"
-import PlayAgain from "./game/field/PlayAgain"
-import Score from "./game/field/Score"
+import NextMove from './game/field/NextMove';
+import Field from './game/Field';
+import PlayAgain from './game/field/PlayAgain';
+import Score from './game/field/Score';
 
-
-function Game(){
-return(
+function Game() {
+  return (
     <div>
-        <NextMove/>
-        <Feild/>
-        <PlayAgain/>
-        <Score/>
+      <NextMove />
+      <Field />
+      <PlayAgain />
+      <Score />
     </div>
-)
+  );
 }
-export default Game
+export default Game;
