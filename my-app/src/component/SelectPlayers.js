@@ -14,7 +14,7 @@ function SelectPlayers(props) {
     } else {
       setPlayerVs(value);
       props.setOpenGame(!openedOpenPickPlayer);
-      props.setOpenSelectPlayers(!openedOpenPickPlayer);
+      props.setOpenSelectPlayers(openedOpenPickPlayer);
     }
   }
 
