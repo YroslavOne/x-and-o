@@ -1,0 +1,35 @@
+.block-score{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.block-score-border{
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+.thisx{
+   background: #30C4BE;
+   
+
+}
+.this-dead-heat{
+    background-color: #A8BEC9;
+ 
+ }
+ .thiso{
+    background-color: #F2B238;
+ 
+ }
+ .texth1-block-score{
+    font-size: 20px;
+    font-weight: 700;
+ }
