@@ -9,15 +9,20 @@ function SelectPlayers(props) {
   const [openPickPlayer, setOpenPickPlayer] = useState(false);
 
   function chooseWithWhom(value, openedOpenPickPlayer) {
-    setOpenPickPlayer(openedOpenPickPlayer);
-    setPlayerVs(value);
+    if (openedOpenPickPlayer === true) {
+      setOpenPickPlayer(openedOpenPickPlayer);
+    } else {
+      setPlayerVs(value);
+      props.setOpenGame(!openedOpenPickPlayer);
+      props.setOpenSelectPlayers(!openedOpenPickPlayer);
+    }
   }
 
   return (
     <div>
-        <div className='container-logo'>
-        <div className='logo'></div>
-        </div>
+      <div className="container-logo">
+        <div className="logo"></div>
+      </div>
       {openPickPlayer && (
         <PickPlayer
           setOpenGame={props.setOpenGame}
@@ -33,7 +38,7 @@ function SelectPlayers(props) {
           New Game (Vs CPU)
         </button>
         <button
-          onClick={(e) => chooseWithWhom(e.target.value, true)}
+          onClick={(e) => chooseWithWhom(e.target.value, false)}
           value={'player'}
           className="button-cpu-or-player"
         >

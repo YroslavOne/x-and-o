@@ -10,8 +10,13 @@ function LineForField(props) {
     tapOnCell(id);
   }
   return (
-    <li className="call" id={props.id} onClick={(e) => tap(e.target.id)}>
-      {props.value}</li>
+    <li
+      className={`call ${props.value}`}
+      id={props.id}
+      onClick={(e) => tap(e.target.id)}
+    >
+      {/* {props.value} */}
+    </li>
   );
 }
 export default LineForField;

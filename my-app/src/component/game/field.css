@@ -15,12 +15,27 @@
 	align-items: center;
 	justify-content: center;
 }
+
 .field-cell li {
-width: 80px;
-height: 80px;
-/* margin-right: 50px; */
-background: #1F3540;
-/* padding: 5px; */
-border-radius: 5px;
-box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.5);
+	width: 80px;
+	height: 80px;
+	/* margin-right: 50px; */
+	background: #1F3540;
+	/* padding: 5px; */
+	border-radius: 5px;
+	box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.field-cell>.O {
+	background-image: url(./../../../public/image/icon-o.svg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	box-sizing: border-box;
+}
+
+.field-cell>.X {
+	background-image: url(./../../../public/image/icon-x.svg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	box-sizing: border-box;
 }

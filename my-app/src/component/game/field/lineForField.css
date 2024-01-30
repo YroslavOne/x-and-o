@@ -1,14 +1,28 @@
 .call {
+
 	list-style-type: none;
 	display: flex;
 	align-items: center;
 	align-content: center;
 	justify-content: center;
 	text-align: center;
-	width: 100%;
-	height: 100%;
 	text-decoration: none;
-	background-color: aqua;
 	margin: 3px;
 	vertical-align: middle;
+	background: url(./../../../../public/image/icon-x.svg);
+}
+
+.X {
+	content: "dw";
+	width: 100%;
+	background: url(./../../../../public/image/icon-x.svg);
+}
+
+.O {
+	width: 45px;
+	height: 20px;
+	background-image: url("./../../../../public/image/logo.svg") no-repeat;
+	background-position: center center;
+	background-size: contain;
+	box-sizing: border-box;
 }
