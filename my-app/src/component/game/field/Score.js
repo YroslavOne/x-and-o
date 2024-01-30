@@ -5,10 +5,10 @@ function Score(){
     const {scoreList} = useContext(Context)
    
     return(
-        <div>
-            <h2>X - {scoreList.X}</h2> 
-            <h2>dead Heat - {scoreList.deadHeat}</h2> 
-            <h2>O - {scoreList.O}</h2> 
+        <div className="block-score">
+            <h2 className="text-block-score">X - {scoreList.X}</h2> 
+            <h2 className="text-block-score">dead Heat - {scoreList.deadHeat}</h2> 
+            <h2 className="text-block-score">O - {scoreList.O}</h2> 
         </div>
     )
 }

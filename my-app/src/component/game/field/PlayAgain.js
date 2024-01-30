@@ -2,6 +2,7 @@ import { Context } from "../../Context";
 import { useContext } from "react";
 import DataCells from "../../../DataCells";
 import { v4 as uuidv4 } from 'uuid';
+import "./playAgain.css"
 
 
 function PlayAgain(){
@@ -85,8 +86,8 @@ function clickPlayAgain(){
 }
 
 return(
-    <div>
-        <button onClick={(e) =>{clickPlayAgain()}}>Play again</button>
+    <div className="play-again">
+        <button className="button-play-again" onClick={(e) =>{clickPlayAgain()}}></button>
     </div>
 )
 }

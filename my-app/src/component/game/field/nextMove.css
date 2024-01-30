@@ -1,0 +1,11 @@
+.block-next-player{
+background: #1F3540;
+padding: 5px;
+border-radius: 5px;
+box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.5);
+
+}
+.block-next-player-text {
+    color: white;
+
+}

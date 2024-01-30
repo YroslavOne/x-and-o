@@ -12,8 +12,17 @@
 	width: 100%;
 	height: 100%;
 	display: grid;
-	gap: 1px;
+	gap: 5px;
 	grid-template-columns: repeat(3, 1fr);
 	align-items: center;
 	justify-content: center;
+}
+.field-cell li {
+width: 80px;
+height: 80px;
+/* margin-right: 50px; */
+background: #1F3540;
+/* padding: 5px; */
+border-radius: 5px;
+box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.5);
 }

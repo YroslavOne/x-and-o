@@ -1,0 +1,19 @@
+.play-again{
+
+}
+
+.button-play-again{
+width: 30px;
+height: 30px;
+background: url(./../../../../public/image/icon-restart.svg)no-repeat;
+background-position: center center;
+    background-size: 15px;
+	box-sizing: border-box;
+background-color: #A8BEC7;
+border-radius: 5px;
+box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.button-play-again:hover{
+    background-color: #6e7a80;
+    }

@@ -1,0 +1,22 @@
+.block-game-head{
+    margin-top: 150px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+
+}
+.block-game-head-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    content: "";
+    width: 45px;
+    height: 20px;
+    background: url(./../../public/image/logo.svg) no-repeat;
+	background-position: center center;
+    background-size: contain;
+	box-sizing: border-box;
+}

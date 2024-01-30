@@ -1,14 +1,15 @@
 import { Context } from "../../Context"
 import { useContext } from "react"
+import "./nextMove.css"
 
 function NextMove(){
 
 const {nextOorX}=useContext(Context)
 
     return(
-        <div>
-            <h1>
-            The next one is walking {nextOorX}
+        <div className="block-next-player">
+            <h1 className="block-next-player-text">
+            next: {nextOorX}
             </h1>
         </div>
     )
