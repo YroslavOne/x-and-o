@@ -68,19 +68,19 @@ function PlayerCpu(cellList, whoPlaysBot) {
   function defendsHimself() {
     let indexForOutput = 0;
     let protectionTriggered = false;
-    WinningData.map((objWinningData) => {
+    WinningData.forEach((objWinningData) => {
       let coincidencesForX = 0;
       let coincidencesForO = 0;
-      objWinningData.map((idWinningData) => {
+      objWinningData.forEach((idWinningData) => {
         let matchChecking = false;
 
-        filterOnlyVillain.map((objFilterOnlyVillain) => {
+        filterOnlyVillain.forEach((objFilterOnlyVillain) => {
           if (idWinningData === objFilterOnlyVillain.id) {
             coincidencesForX = coincidencesForX + 1;
             matchChecking = true;
           }
         });
-        filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
+        filterOnlyGoodSoul.forEach((objFilterOnlyGoodSoul) => {
           if (idWinningData === objFilterOnlyGoodSoul.id) {
             coincidencesForO = coincidencesForO + 1;
           }
@@ -106,19 +106,19 @@ function PlayerCpu(cellList, whoPlaysBot) {
   function attack() {
     let protectionTriggered = false;
     let indexForOutput = 0;
-    WinningData.map((objWinningData) => {
+    WinningData.forEach((objWinningData) => {
       let coincidencesForX = 0;
       let coincidencesForO = 0;
-      objWinningData.map((idWinningData) => {
+      objWinningData.forEach((idWinningData) => {
         let matchChecking = false;
 
-        filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
+        filterOnlyGoodSoul.forEach((objFilterOnlyGoodSoul) => {
           if (idWinningData === objFilterOnlyGoodSoul.id) {
             coincidencesForO = coincidencesForO + 1;
             matchChecking = true;
           }
         });
-        filterOnlyVillain.map((objFilterOnlyVillain) => {
+        filterOnlyVillain.forEach((objFilterOnlyVillain) => {
           if (idWinningData === objFilterOnlyVillain.id) {
             coincidencesForX = coincidencesForX + 1;
           }
@@ -143,18 +143,18 @@ function PlayerCpu(cellList, whoPlaysBot) {
   function forwardToVictory() {
     let indexForOutput = 0;
     let protectionTriggered = false;
-    WinningData.map((objWinningData) => {
+    WinningData.forEach((objWinningData) => {
       let coincidencesForX = 0;
       let coincidencesForO = 0;
-      objWinningData.map((idWinningData) => {
+      objWinningData.forEach((idWinningData) => {
         let matchChecking = false;
 
-        filterOnlyVillain.map((objFilterOnlyVillain) => {
+        filterOnlyVillain.forEach((objFilterOnlyVillain) => {
           if (idWinningData === objFilterOnlyVillain.id) {
             coincidencesForX = coincidencesForX + 1;
           }
         });
-        filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
+        filterOnlyGoodSoul.forEach((objFilterOnlyGoodSoul) => {
           if (idWinningData === objFilterOnlyGoodSoul.id) {
             coincidencesForO = coincidencesForO + 1;
             matchChecking = true;
