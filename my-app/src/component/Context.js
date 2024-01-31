@@ -16,7 +16,7 @@ export const Context = React.createContext({
   newGame: null,
   setNewGame: () => {},
   playerVs: null,
-  setNewGame: () => {},
+  setPlayerVs: () => {},
   playerNumber: 1,
   setPlayerNumber: () => {},
   whoPlaysBot: null,
@@ -62,10 +62,10 @@ export const ContextProvider = ({ children }) => {
   localStorage.NewGame = newGame;
   localStorage.CellList = JSON.stringify(cellList);
 
-  function playAgain(cellwdsList) {
+  function playAgain(cellsList) {
     if (whoPlaysBot === 'X') {
       console.log('whoPlaysBot');
-      botGoesFirst(cellwdsList);
+      botGoesFirst(cellsList);
       setNextOorX('O');
       setNewGame(true);
     } else {
@@ -78,22 +78,32 @@ export const ContextProvider = ({ children }) => {
 
   function botGoesFirst(cellsList) {
     setCellList(PlayerCpu(cellsList, 'X', 'X'));
-    changeOandX(nextOorX);
-  }
-
-  function changeOandX(valueOorX) {
-    
   }
 
   function tapOnCell(id) {
     let updatedCellList;
     let thisNewGame;
     if (newGame === true) {
-      updatedCellList = ButtonForXorO(id, cellList, nextOorX, setNextOorX, newGame, playerVs);
-      // changePlayNumber()
-      // let nextSumbolForCell = changeOandX(nextOorX);
+      updatedCellList = ButtonForXorO(
+        id,
+        cellList,
+        nextOorX,
+        setNextOorX,
+        newGame,
+        playerVs
+      );
       if (updatedCellList !== null) {
         setCellList(updatedCellList);
+        console.log(
+          Won(
+            updatedCellList,
+            scoreList,
+            setScoreList,
+            newGame,
+            setNewGame,
+            setCellList
+          )
+        );
         thisNewGame = Won(
           updatedCellList,
           scoreList,
@@ -103,14 +113,18 @@ export const ContextProvider = ({ children }) => {
           setCellList
         );
       }
+      console.log(thisNewGame);
 
       if (
         playerVs === 'cpu' &&
         thisNewGame === true &&
         updatedCellList !== null
       ) {
-        updatedCellList = PlayerCpu(updatedCellList, whoPlaysBot)
-          setCellList(updatedCellList)
+        updatedCellList = PlayerCpu(updatedCellList, whoPlaysBot);
+        setCellList(updatedCellList);
+        console.log(
+          Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
+        );
         thisNewGame = Won(
           updatedCellList,
           scoreList,

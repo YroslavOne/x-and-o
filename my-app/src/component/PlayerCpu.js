@@ -1,18 +1,16 @@
 import WinningData from './../WinningData';
 import { v4 as uuidv4 } from 'uuid';
 
-// import { useContext } from "react"
-// import { Context } from "./Context"
 function PlayerCpu(cellList, whoPlaysBot) {
-    let villain
+  let villain;
 
-    if(whoPlaysBot==="O"){
-        villain="X"
-    } else {
-        villain="O"
-    }
-    
-    let goodSoul = whoPlaysBot
+  if (whoPlaysBot === 'O') {
+    villain = 'X';
+  } else {
+    villain = 'O';
+  }
+
+  let goodSoul = whoPlaysBot;
   let filterCellsList = cellList.filter(
     (filterCellList) => filterCellList.value !== null
   );
@@ -27,177 +25,169 @@ function PlayerCpu(cellList, whoPlaysBot) {
   function updateCellList(index) {
     updatedCellList = cellList;
 
-
     updatedCellList[index].filled = true;
     updatedCellList[index].value = whoPlaysBot;
-    updatedCellList[index].key=uuidv4()
-    updatedCellList[index].background = (null)
+    updatedCellList[index].key = uuidv4();
+    updatedCellList[index].background = null;
   }
 
-
-
-if(filterCellsList.length!==0){
-  if (filterCellsList.length <= 1) {
-    if (filterCellsList[0].id !== 5) {
-      updateCellList(4);
+  if (filterCellsList.length !== 0) {
+    if (filterCellsList.length <= 1) {
+      if (filterCellsList[0].id !== 5) {
+        updateCellList(4);
+      } else {
+        updateCellList(8);
+      }
     } else {
-      updateCellList(8);
+      if (filterCellsList.length <= 3) {
+        choiceOfOption();
+      } else {
+        if (filterCellsList.length >= 4) {
+          choiceOfOption();
+        }
+      }
     }
   } else {
-    if (filterCellsList.length <= 3) {
-      choiceOfOption();
-    } else {
-      if (filterCellsList.length >= 4) {
-        choiceOfOption()
-      } 
-    }
-  }
-} else {
     updateCellList(4);
-}
+  }
 
   function choiceOfOption() {
-    let protectionTriggered = false
-    protectionTriggered = forwardToVictory()
-    if(protectionTriggered===false){
-    protectionTriggered = defendsHimself()
-    if(protectionTriggered===false){
-        protectionTriggered = attack()
-    if(protectionTriggered===false){
-        protectionTriggered = justMove()
+    let protectionTriggered = false;
+    protectionTriggered = forwardToVictory();
+    if (protectionTriggered === false) {
+      protectionTriggered = defendsHimself();
+      if (protectionTriggered === false) {
+        protectionTriggered = attack();
+        if (protectionTriggered === false) {
+          protectionTriggered = justMove();
+        }
+      }
     }
-    }
-    } 
-    // console.log(protectionTriggered)
-
-
-    
   }
 
-
-
-  function defendsHimself(){
+  function defendsHimself() {
     let indexForOutput = 0;
-    let protectionTriggered = false
+    let protectionTriggered = false;
     WinningData.map((objWinningData) => {
-        let coincidencesForX = 0;
-        let coincidencesForO = 0;
-        objWinningData.map((idWinningData) => {
-          let matchChecking = false;
-  
-          filterOnlyVillain.map((objFilterOnlyVillain) => {
-            if (idWinningData === objFilterOnlyVillain.id) {
-              coincidencesForX = coincidencesForX + 1;
-              matchChecking = true;
-            }
-          });
-          filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
-            if (idWinningData === objFilterOnlyGoodSoul.id) {
-              coincidencesForO = coincidencesForO+1;
-            }
-          });
-  
-          if (matchChecking === false) {
-            indexForOutput = idWinningData - 1;
+      let coincidencesForX = 0;
+      let coincidencesForO = 0;
+      objWinningData.map((idWinningData) => {
+        let matchChecking = false;
+
+        filterOnlyVillain.map((objFilterOnlyVillain) => {
+          if (idWinningData === objFilterOnlyVillain.id) {
+            coincidencesForX = coincidencesForX + 1;
+            matchChecking = true;
           }
         });
-        if (coincidencesForO !== 1 && coincidencesForX === 2 && protectionTriggered===false) {
-            updateCellList(indexForOutput)
-            protectionTriggered=true
-          return  protectionTriggered;
-
-        }
-      });
-      return protectionTriggered;
-  }
-
-
-  function attack(){
-    let protectionTriggered = false
-    let indexForOutput = 0;
-    WinningData.map((objWinningData) =>{
-        let coincidencesForX = 0;
-        let coincidencesForO = 0;
-  objWinningData.map((idWinningData) => {
-    let matchChecking = false;
-
-    filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
-        if (idWinningData === objFilterOnlyGoodSoul.id) {
-          coincidencesForO = coincidencesForO+1;
-          matchChecking = true;
-        }
-      });
-    filterOnlyVillain.map((objFilterOnlyVillain) => {
-        if (idWinningData === objFilterOnlyVillain.id) {
-          coincidencesForX = coincidencesForX + 1;
-        }
+        filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
+          if (idWinningData === objFilterOnlyGoodSoul.id) {
+            coincidencesForO = coincidencesForO + 1;
+          }
         });
+
         if (matchChecking === false) {
-            indexForOutput = idWinningData - 1;
-          }
+          indexForOutput = idWinningData - 1;
+        }
       });
-      if (coincidencesForX === 0 && coincidencesForO >= 1 && protectionTriggered!==true) {
-        updateCellList(indexForOutput)
-        protectionTriggered = true
+      if (
+        coincidencesForO !== 1 &&
+        coincidencesForX === 2 &&
+        protectionTriggered === false
+      ) {
+        updateCellList(indexForOutput);
+        protectionTriggered = true;
         return protectionTriggered;
       }
-    })
+    });
     return protectionTriggered;
   }
-  
-  function forwardToVictory(){
+
+  function attack() {
+    let protectionTriggered = false;
     let indexForOutput = 0;
-    let protectionTriggered = false
     WinningData.map((objWinningData) => {
-        let coincidencesForX = 0;
-        let coincidencesForO = 0;
-        objWinningData.map((idWinningData) => {
+      let coincidencesForX = 0;
+      let coincidencesForO = 0;
+      objWinningData.map((idWinningData) => {
+        let matchChecking = false;
 
-          let matchChecking = false;
-  
-          filterOnlyVillain.map((objFilterOnlyVillain) => {
-            if (idWinningData === objFilterOnlyVillain.id) {
-              coincidencesForX = coincidencesForX + 1;
-
-            }
-          });
-          filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
-            if (idWinningData === objFilterOnlyGoodSoul.id) {
-              coincidencesForO = coincidencesForO + 1;
-              matchChecking = true;
-
-            }
-          });
-  
-          if (matchChecking === false) {
-            indexForOutput = idWinningData - 1;
-
+        filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
+          if (idWinningData === objFilterOnlyGoodSoul.id) {
+            coincidencesForO = coincidencesForO + 1;
+            matchChecking = true;
           }
         });
-        if (coincidencesForO === 2 && coincidencesForX === 0 && protectionTriggered===false) {
-            updateCellList(indexForOutput)
-            protectionTriggered=true
-          return  protectionTriggered;
-
+        filterOnlyVillain.map((objFilterOnlyVillain) => {
+          if (idWinningData === objFilterOnlyVillain.id) {
+            coincidencesForX = coincidencesForX + 1;
+          }
+        });
+        if (matchChecking === false) {
+          indexForOutput = idWinningData - 1;
         }
       });
-      return protectionTriggered;
+      if (
+        coincidencesForX === 0 &&
+        coincidencesForO >= 1 &&
+        protectionTriggered !== true
+      ) {
+        updateCellList(indexForOutput);
+        protectionTriggered = true;
+        return protectionTriggered;
+      }
+    });
+    return protectionTriggered;
   }
 
-  function justMove(){
-    let protectionTriggered = false
-    cellList.map((objCellList)=>{
-        if(objCellList.filled===false && protectionTriggered===false){
-            updateCellList(objCellList.id-1)
-            protectionTriggered = true
-            
+  function forwardToVictory() {
+    let indexForOutput = 0;
+    let protectionTriggered = false;
+    WinningData.map((objWinningData) => {
+      let coincidencesForX = 0;
+      let coincidencesForO = 0;
+      objWinningData.map((idWinningData) => {
+        let matchChecking = false;
+
+        filterOnlyVillain.map((objFilterOnlyVillain) => {
+          if (idWinningData === objFilterOnlyVillain.id) {
+            coincidencesForX = coincidencesForX + 1;
+          }
+        });
+        filterOnlyGoodSoul.map((objFilterOnlyGoodSoul) => {
+          if (idWinningData === objFilterOnlyGoodSoul.id) {
+            coincidencesForO = coincidencesForO + 1;
+            matchChecking = true;
+          }
+        });
+
+        if (matchChecking === false) {
+          indexForOutput = idWinningData - 1;
         }
-    })
-    return protectionTriggered
-
+      });
+      if (
+        coincidencesForO === 2 &&
+        coincidencesForX === 0 &&
+        protectionTriggered === false
+      ) {
+        updateCellList(indexForOutput);
+        protectionTriggered = true;
+        return protectionTriggered;
+      }
+    });
+    return protectionTriggered;
   }
 
-  
+  function justMove() {
+    let protectionTriggered = false;
+    cellList.map((objCellList) => {
+      if (objCellList.filled === false && protectionTriggered === false) {
+        updateCellList(objCellList.id - 1);
+        protectionTriggered = true;
+      }
+    });
+    return protectionTriggered;
+  }
 
   return updatedCellList;
 }

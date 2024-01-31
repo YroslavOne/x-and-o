@@ -1,17 +1,14 @@
-import { Context } from "../../Context"
-import { useContext } from "react"
-import "./nextMove.css"
+import { Context } from '../../Context';
+import { useContext } from 'react';
+import './nextMove.css';
 
-function NextMove(){
+function NextMove() {
+  const { nextOorX } = useContext(Context);
 
-const {nextOorX}=useContext(Context)
-
-    return(
-        <div className="block-next-player">
-            <h1 className="block-next-player-text">
-            next: {nextOorX}
-            </h1>
-        </div>
-    )
+  return (
+    <div className="block-next-player">
+      <h1 className="block-next-player-text">next: {nextOorX}</h1>
+    </div>
+  );
 }
-export default NextMove
+export default NextMove;

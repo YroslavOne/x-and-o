@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import PickPlayer from './SelectPlayers/PickPlayer';
 import { Context } from './Context';
 import './selectPlayers.css';
-// import Logo from "./../../public/image/logo.svg"
 
 function SelectPlayers(props) {
   const { setPlayerVs } = useContext(Context);
@@ -12,7 +11,6 @@ function SelectPlayers(props) {
     if (openedOpenPickPlayer === true) {
       setOpenPickPlayer(openedOpenPickPlayer);
       setPlayerVs(value);
-
     } else {
       setPlayerVs(value);
       props.setOpenGame(!openedOpenPickPlayer);
