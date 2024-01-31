@@ -10,6 +10,7 @@ function PickPlayer(props) {
     setSelectedFirst,
     setWhoPlaysBot,
     botGoesFirst,
+    setNextOorX
   } = useContext(Context);
 
   function selectFirst(value) {
@@ -18,8 +19,10 @@ function PickPlayer(props) {
     props.setOpenSelectPlayers(false);
     if (value === 'X') {
       setWhoPlaysBot('O');
+      setNextOorX("X")
     } else {
       setWhoPlaysBot('X');
+      setNextOorX("O")
       botGoesFirst(cellList);
     }
   }

@@ -4,7 +4,7 @@ import PlayerCpu from "../../../PlayerCpu"
 // import { useContext } from "react"
 
 
-function ButtonForXorO(id, cellList, nextOorX, newGame){
+function ButtonForXorO(id, cellList, nextOorX, setNextOorX, newGame, playerVs){
 
     // const {playerVs} = useContext(Context)
 
@@ -12,6 +12,20 @@ function ButtonForXorO(id, cellList, nextOorX, newGame){
 
     
 // }
+
+
+function chekPlayer(valueOorX){
+if(playerVs==="player"){
+    let valueXandO;
+    if (valueOorX === 'X') {
+      valueXandO = 'O';
+      setNextOorX(valueXandO);
+    } else {
+      valueXandO = 'X';
+      setNextOorX(valueXandO);
+    }
+} 
+}
 
 let clickedOnAnEmpty = false
 let allCell = []
@@ -24,10 +38,12 @@ cellList.map((objAllCell)=>{
             clickedOnAnEmpty = true
             alert(`"I can’t set the court value, it’s already" ${objAllCell.value}`)
         } else {
+            chekPlayer(nextOorX)
             allCell.push({
                 id:objAllCell.id,
                 value: nextOorX,
                 filled: true,
+                background: "rgb(31,53,64)",
                 key: uuidv4()
             })
             // changeOandX()
@@ -36,6 +52,7 @@ cellList.map((objAllCell)=>{
 
     } else{
         allCell.push(objAllCell)
+
     }
  
 })

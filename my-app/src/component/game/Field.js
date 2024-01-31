@@ -12,7 +12,7 @@ return(
     <div className="field">
         <ul className="field-cell">
         {cellList.map((objCell)=>(
-          <LineForField id={objCell.id} value={objCell.value} /> ))}
+          <LineForField id={objCell.id} value={objCell.value} background={objCell.background} /> ))}
         </ul>
         </div>
 )

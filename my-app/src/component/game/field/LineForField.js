@@ -14,8 +14,9 @@ function LineForField(props) {
       className={`call ${props.value}`}
       id={props.id}
       onClick={(e) => tap(e.target.id)}
+      style = {{backgroundColor: props.background}}
     >
-      {/* {props.value} */}
+
     </li>
   );
 }

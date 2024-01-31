@@ -11,6 +11,8 @@ function SelectPlayers(props) {
   function chooseWithWhom(value, openedOpenPickPlayer) {
     if (openedOpenPickPlayer === true) {
       setOpenPickPlayer(openedOpenPickPlayer);
+      setPlayerVs(value);
+
     } else {
       setPlayerVs(value);
       props.setOpenGame(!openedOpenPickPlayer);

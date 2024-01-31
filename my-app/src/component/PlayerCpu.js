@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 // import { useContext } from "react"
 // import { Context } from "./Context"
-function PlayerCpu(cellList, nextOorX, whoPlaysBot) {
+function PlayerCpu(cellList, whoPlaysBot) {
     let villain
 
     if(whoPlaysBot==="O"){
@@ -29,8 +29,9 @@ function PlayerCpu(cellList, nextOorX, whoPlaysBot) {
 
 
     updatedCellList[index].filled = true;
-    updatedCellList[index].value = nextOorX;
+    updatedCellList[index].value = whoPlaysBot;
     updatedCellList[index].key=uuidv4()
+    updatedCellList[index].background = (null)
   }
 
 
