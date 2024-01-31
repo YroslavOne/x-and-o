@@ -13,7 +13,7 @@ function Game() {
         <PlayAgain />
       </div>
       <Field />
-      <Score />ы
+      <Score />
     </div>
   );
 }

@@ -5,8 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './playAgain.css';
 
 function PlayAgain() {
-  const { playAgain, setCellList, setNextOorX, setNewGame, botGoesFirst } =
-    useContext(Context);
+  const { playAgain, setCellList } = useContext(Context);
 
   let cellList = [
     {

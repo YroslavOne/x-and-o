@@ -64,7 +64,6 @@ export const ContextProvider = ({ children }) => {
 
   function playAgain(cellsList) {
     if (whoPlaysBot === 'X') {
-      console.log('whoPlaysBot');
       botGoesFirst(cellsList);
       setNextOorX('O');
       setNewGame(true);
@@ -94,16 +93,6 @@ export const ContextProvider = ({ children }) => {
       );
       if (updatedCellList !== null) {
         setCellList(updatedCellList);
-        console.log(
-          Won(
-            updatedCellList,
-            scoreList,
-            setScoreList,
-            newGame,
-            setNewGame,
-            setCellList
-          )
-        );
         thisNewGame = Won(
           updatedCellList,
           scoreList,
@@ -113,7 +102,6 @@ export const ContextProvider = ({ children }) => {
           setCellList
         );
       }
-      console.log(thisNewGame);
 
       if (
         playerVs === 'cpu' &&
@@ -122,9 +110,6 @@ export const ContextProvider = ({ children }) => {
       ) {
         updatedCellList = PlayerCpu(updatedCellList, whoPlaysBot);
         setCellList(updatedCellList);
-        console.log(
-          Won(updatedCellList, scoreList, setScoreList, newGame, setNewGame)
-        );
         thisNewGame = Won(
           updatedCellList,
           scoreList,
@@ -141,21 +126,20 @@ export const ContextProvider = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        cellList,
-        setCellList,
-        nextOorX,
-        setNextOorX,
         tapOnCell,
+        nextOorX,
+        playAgain,
+        setCellList,
         scoreList,
-        setNewGame,
+        whoPlaysBot,
+        playerVs,
+        cellList,
         selectedFirst,
         setSelectedFirst,
-        setPlayerVs,
-        playerVs,
-        whoPlaysBot,
         setWhoPlaysBot,
         botGoesFirst,
-        playAgain,
+        setNextOorX,
+        setPlayerVs,
       }}
     >
       {children}

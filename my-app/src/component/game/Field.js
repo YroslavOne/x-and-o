@@ -14,6 +14,7 @@ function Feild() {
             id={objCell.id}
             value={objCell.value}
             background={objCell.background}
+            key={objCell.id}
           />
         ))}
       </ul>

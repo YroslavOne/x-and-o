@@ -32,7 +32,6 @@ function Won(
           deadHeat: scoreList.deadHeat,
         });
         thisNewGame = false;
-        console.log("winner === 'X'");
         setNewGame(false);
       } else {
         if (winner === 'O') {
@@ -42,7 +41,6 @@ function Won(
             O: valueO,
             deadHeat: scoreList.deadHeat,
           });
-          console.log("winner === 'O'");
           thisNewGame = false;
           setNewGame(false);
         } else {
@@ -52,7 +50,6 @@ function Won(
             O: scoreList.O,
             deadHeat: valueDeadHeat,
           });
-          console.log("winner === 'valueDeadHeat'");
 
           thisNewGame = false;
           setNewGame(false);
@@ -64,13 +61,13 @@ function Won(
   let indexForOutput = 0;
   let winnerValue;
   let protectionTriggered = false;
-  WinningData.map((objWinningData) => {
+  WinningData.forEach((objWinningData) => {
     let coincidencesForX = 0;
     let coincidencesForO = 0;
-    objWinningData.map((idWinningData) => {
+    objWinningData.forEach((idWinningData) => {
       let matchChecking = false;
 
-      cellList.map((objCellList) => {
+      cellList.forEach((objCellList) => {
         if (objCellList.id === idWinningData) {
           if (objCellList.value === 'X') {
             coincidencesForX = coincidencesForX + 1;
@@ -98,18 +95,16 @@ function Won(
       victoryLine(objWinningData);
       score(winnerValue);
       protectionTriggered = true;
-    } else {
-      if (
-        protectionTriggered === false &&
-        filterCellListFilledFalse === emptyObject
-      ) {
-        score(winnerValue);
-        protectionTriggered = true;
-        console.log('thisNewGame = false;');
-      }
     }
   });
 
+  if (
+    protectionTriggered === false &&
+    filterCellListFilledFalse[0] === undefined
+  ) {
+    score('deadHeat');
+    protectionTriggered = true;
+  }
   return thisNewGame;
 }
 export default Won;
