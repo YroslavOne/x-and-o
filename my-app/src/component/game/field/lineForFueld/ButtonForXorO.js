@@ -40,7 +40,7 @@ function ButtonForXorO(id, cellList, nextOorX, setNextOorX, newGame, playerVs) {
       }
     });
   } else {
-    allCell = cellList;
+    allCell = Array.from(cellList);
   }
   if (clickedOnAnEmpty === true) {
     allCell = null;

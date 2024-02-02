@@ -1,20 +1,20 @@
-import WinningData from './../WinningData';
-import { v4 as uuidv4 } from 'uuid';
+import WinningData from "./../WinningData";
+import { v4 as uuidv4 } from "uuid";
 
-function PlayerCpu(cellList, whoPlaysBot) {
+function PlayerCpu(cellList, whoPlaysBot, setCellList) {
   let villain;
 
-  if (whoPlaysBot === 'O') {
-    villain = 'X';
+  if (whoPlaysBot === "O") {
+    villain = "X";
   } else {
-    villain = 'O';
+    villain = "O";
   }
 
   let goodSoul = whoPlaysBot;
   let filterCellsList = cellList.filter(
     (filterCellList) => filterCellList.value !== null
   );
-  let updatedCellList;
+  let updatedCellList = [];
   let filterOnlyGoodSoul = cellList.filter(
     (filterCellList) => filterCellList.value === goodSoul
   );
@@ -23,12 +23,13 @@ function PlayerCpu(cellList, whoPlaysBot) {
   );
 
   function updateCellList(index) {
-    updatedCellList = cellList;
+    updatedCellList = Array.from(cellList);
 
     updatedCellList[index].filled = true;
     updatedCellList[index].value = whoPlaysBot;
     updatedCellList[index].key = uuidv4();
     updatedCellList[index].background = null;
+    // setCellList(updatedCellList);
   }
 
   if (filterCellsList.length !== 0) {
@@ -38,17 +39,9 @@ function PlayerCpu(cellList, whoPlaysBot) {
       } else {
         updateCellList(8);
       }
-    } else {
-      if (filterCellsList.length <= 3) {
-        choiceOfOption();
-      } else {
-        if (filterCellsList.length >= 4) {
-          choiceOfOption();
-        }
-      }
+    } else if (filterCellsList.length >= 3) {
+      choiceOfOption();
     }
-  } else {
-    updateCellList(4);
   }
 
   function choiceOfOption() {

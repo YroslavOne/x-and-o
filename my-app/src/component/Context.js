@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import ButtonForXorO from './game/field/lineForFueld/ButtonForXorO';
-import Won from './game/field/lineForFueld/Won';
-import DataCells from '../DataCells';
-import PlayerCpu from './PlayerCpu';
+import React, { useState } from "react";
+import ButtonForXorO from "./game/field/lineForFueld/ButtonForXorO";
+import Won from "./game/field/lineForFueld/Won";
+import DataCells from "../DataCells";
+import { v4 as uuidv4 } from 'uuid';
+
+import PlayerCpu from "./PlayerCpu";
 
 export const Context = React.createContext({
-  selectedFirst: 'X',
+  selectedFirst: "X",
   setSelectedFirst: () => {},
   cellList: null,
   setCellList: () => {},
@@ -24,7 +26,73 @@ export const Context = React.createContext({
 });
 
 export const ContextProvider = ({ children }) => {
-  let cells = DataCells;
+  
+  const cells = DataCells.slice()
+  // [
+  //   {
+  //     id: 1,
+  //     value: null,
+  //     filled: false,
+  //     key: uuidv4(),
+  //     background: 'rgb(31,53,64)',
+  //   },
+  //   {
+  //     id: 2,
+  //     value: null,
+  //     filled: false,
+  //     key: uuidv4(),
+  //     background: 'rgb(31,53,64)',
+  //   },
+  //   {
+  //     id: 3,
+  //     value: null,
+  //     filled: false,
+  //     key: uuidv4(),
+  //     background: 'rgb(31,53,64)',
+  //   },
+  //   {
+  //     id: 4,
+  //     value: null,
+  //     filled: false,
+  //     key: uuidv4(),
+  //     background: 'rgb(31,53,64)',
+  //   },
+  //   {
+  //     id: 5,
+  //     value: null,
+  //     filled: false,
+  //     key: uuidv4(),
+  //     background: 'rgb(31,53,64)',
+  //   },
+  //   {
+  //     id: 6,
+  //     value: null,
+  //     filled: false,
+  //     key: uuidv4(),
+  //     background: 'rgb(31,53,64)',
+  //   },
+  //   {
+  //     id: 7,
+  //     value: null,
+  //     filled: false,
+  //     key: uuidv4(),
+  //     background: 'rgb(31,53,64)',
+  //   },
+  //   {
+  //     id: 8,
+  //     value: null,
+  //     filled: false,
+  //     key: uuidv4(),
+  //     background: 'rgb(31,53,64)',
+  //   },
+  //   {
+  //     id: 9,
+  //     value: null,
+  //     filled: false,
+  //     key: uuidv4(),
+  //     background: 'rgb(31,53,64)',
+  //   },
+  // ];
   let scores = { X: 0, O: 0, deadHeat: 0 };
   if (localStorage?.CellList) {
   } else {
@@ -32,7 +100,7 @@ export const ContextProvider = ({ children }) => {
   }
   if (localStorage?.NextOorX) {
   } else {
-    localStorage.setItem('NextOorX', 'X');
+    localStorage.setItem("NextOorX", "X");
   }
   if (localStorage?.Scores) {
   } else {
@@ -40,22 +108,22 @@ export const ContextProvider = ({ children }) => {
   }
   if (localStorage?.NewGame) {
   } else {
-    localStorage.setItem('NewGame', 'true');
+    localStorage.setItem("NewGame", "true");
   }
   if (localStorage?.PlayerVs) {
   } else {
-    localStorage.setItem('PlayerVs', 'player');
+    localStorage.setItem("PlayerVs", "player");
   }
 
-  const [selectedFirst, setSelectedFirst] = useState('X');
+  const [selectedFirst, setSelectedFirst] = useState("X");
   const [cellList, setCellList] = useState(cells);
-  const [nextOorX, setNextOorX] = useState('X');
+  const [nextOorX, setNextOorX] = useState("X");
   const [scoreList, setScoreList] = useState(scores);
   const [newGame, setNewGame] = useState(true);
   const [playerVs, setPlayerVs] = useState(null);
   const [whoPlaysBot, setWhoPlaysBot] = useState(null);
 
-  localStorage.setItem('WhoPlaysBot', whoPlaysBot);
+  localStorage.setItem("WhoPlaysBot", whoPlaysBot);
   localStorage.Scores = JSON.stringify(scoreList);
   localStorage.PlayerVs = playerVs;
   localStorage.NextOorX = nextOorX;
@@ -63,65 +131,59 @@ export const ContextProvider = ({ children }) => {
   localStorage.CellList = JSON.stringify(cellList);
 
   function playAgain(cellsList) {
-    if (whoPlaysBot === 'X') {
+    if (whoPlaysBot === "X") {
+      console.log(DataCells)
       botGoesFirst(cellsList);
-      setNextOorX('O');
+      setNextOorX("O");
       setNewGame(true);
     } else {
       console.log(whoPlaysBot);
-
-      setNextOorX('X');
+      console.log(DataCells)
+      setNextOorX("X");
       setNewGame(true);
     }
   }
 
   function botGoesFirst(cellsList) {
-    setCellList(PlayerCpu(cellsList, 'X', 'X'));
+    setCellList(PlayerCpu(cellsList, "X", setCellList));
   }
 
   function tapOnCell(id) {
     let updatedCellList;
     let thisNewGame;
     if (newGame === true) {
-      updatedCellList = ButtonForXorO(
+      updatedCellList = (ButtonForXorO(
         id,
         cellList,
         nextOorX,
         setNextOorX,
         newGame,
         playerVs
-      );
+      )).slice(0);
       if (updatedCellList !== null) {
         setCellList(updatedCellList);
-        thisNewGame = Won(
-          updatedCellList,
-          scoreList,
-          setScoreList,
-          newGame,
-          setNewGame,
-          setCellList
-        );
+        thisNewGame = Won(updatedCellList, scoreList, setScoreList);
+        setNewGame(thisNewGame);
       }
 
       if (
-        playerVs === 'cpu' &&
+        playerVs === "cpu" &&
         thisNewGame === true &&
         updatedCellList !== null
       ) {
-        updatedCellList = PlayerCpu(updatedCellList, whoPlaysBot);
-        setCellList(updatedCellList);
-        thisNewGame = Won(
+        setCellList (PlayerCpu(
           updatedCellList,
-          scoreList,
-          setScoreList,
-          newGame,
-          setNewGame
-        );
+          whoPlaysBot,
+          setCellList
+        ));
+        // setCellList(updatedCellList);
+        thisNewGame = Won(updatedCellList, scoreList, setScoreList, newGame);
+        setNewGame(thisNewGame);
       }
     }
   }
 
-  localStorage.setItem('NextOorX', nextOorX);
+  localStorage.setItem("NextOorX", nextOorX);
 
   return (
     <Context.Provider

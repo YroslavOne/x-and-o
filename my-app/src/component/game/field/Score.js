@@ -1,24 +1,24 @@
-import { Context } from '../../Context';
-import { useContext } from 'react';
-import './score.css';
+import { Context } from "../../Context";
+import { useContext } from "react";
+import "./score.css";
 
 function Score() {
   const { scoreList, whoPlaysBot, playerVs } = useContext(Context);
-  let XPlayer;
-  let OPlayer;
+  let XPlayer = whoPlaysBot === "X" ? "CPU" : "Player";
+  let OPlayer = whoPlaysBot === "X" ? "Player" : "CPU";
 
-  if (whoPlaysBot === 'X' && playerVs === 'cpu') {
-    XPlayer = 'CPU';
-    OPlayer = 'Player';
-  } else {
-    if (whoPlaysBot === 'O' && playerVs === 'cpu') {
-      XPlayer = 'Player';
-      OPlayer = 'CPU';
-    } else {
-      XPlayer = 'Player1';
-      OPlayer = 'Player2';
-    }
-  }
+  // if (whoPlaysBot === 'X' && playerVs === 'cpu') {
+  //   XPlayer = 'CPU';
+  //   OPlayer = 'Player';
+  // } else {
+  //   if (whoPlaysBot === 'O' && playerVs === 'cpu') {
+  //     XPlayer = 'Player';
+  //     OPlayer = 'CPU';
+  //   } else {
+  //     XPlayer = 'Player1';
+  //     OPlayer = 'Player2';
+  //   }
+  // }
   return (
     <div className="block-score">
       <div className="block-score-border thisx">
