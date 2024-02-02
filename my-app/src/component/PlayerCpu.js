@@ -1,7 +1,7 @@
 import WinningData from "./../WinningData";
 import { v4 as uuidv4 } from "uuid";
 
-function PlayerCpu(cellList, whoPlaysBot, setCellList) {
+function PlayerCpu(cellListForCpu, whoPlaysBot, setCellList) {
   let villain;
 
   if (whoPlaysBot === "O") {
@@ -11,24 +11,38 @@ function PlayerCpu(cellList, whoPlaysBot, setCellList) {
   }
 
   let goodSoul = whoPlaysBot;
-  let filterCellsList = cellList.filter(
+  let filterCellsList = cellListForCpu.filter(
     (filterCellList) => filterCellList.value !== null
   );
   let updatedCellList = [];
-  let filterOnlyGoodSoul = cellList.filter(
+  let filterOnlyGoodSoul = cellListForCpu.filter(
     (filterCellList) => filterCellList.value === goodSoul
   );
-  let filterOnlyVillain = cellList.filter(
+  let filterOnlyVillain = cellListForCpu.filter(
     (filterCellList) => filterCellList.value === villain
   );
 
   function updateCellList(index) {
-    updatedCellList = Array.from(cellList);
 
-    updatedCellList[index].filled = true;
-    updatedCellList[index].value = whoPlaysBot;
-    updatedCellList[index].key = uuidv4();
-    updatedCellList[index].background = null;
+    cellListForCpu.map((objAllCell) => {
+      if (objAllCell.id === Number(index+1)){
+        updatedCellList.push({
+          id: objAllCell.id,
+          value: whoPlaysBot,
+          filled: true,
+          background: 'rgb(31,53,64)',
+          key: uuidv4(),
+        });
+      } else{
+        updatedCellList.push(objAllCell)
+      }
+    })
+    // updatedCellList = Array.from(cellListForCpu);
+
+    // updatedCellList[index].filled = true;
+    // updatedCellList[index].value = whoPlaysBot;
+    // updatedCellList[index].key = uuidv4();
+    // updatedCellList[index].background = null;
     // setCellList(updatedCellList);
   }
 
@@ -173,7 +187,7 @@ function PlayerCpu(cellList, whoPlaysBot, setCellList) {
 
   function justMove() {
     let protectionTriggered = false;
-    cellList.map((objCellList) => {
+    cellListForCpu.map((objCellList) => {
       if (objCellList.filled === false && protectionTriggered === false) {
         updateCellList(objCellList.id - 1);
         protectionTriggered = true;

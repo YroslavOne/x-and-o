@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ButtonForXorO from "./game/field/lineForFueld/ButtonForXorO";
 import Won from "./game/field/lineForFueld/Won";
 import DataCells from "../DataCells";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 import PlayerCpu from "./PlayerCpu";
 
@@ -26,8 +26,7 @@ export const Context = React.createContext({
 });
 
 export const ContextProvider = ({ children }) => {
-  
-  const cells = DataCells.slice()
+  const cells = DataCells.slice();
   // [
   //   {
   //     id: 1,
@@ -132,13 +131,13 @@ export const ContextProvider = ({ children }) => {
 
   function playAgain(cellsList) {
     if (whoPlaysBot === "X") {
-      console.log(DataCells)
+      console.log(DataCells);
       botGoesFirst(cellsList);
       setNextOorX("O");
       setNewGame(true);
     } else {
       console.log(whoPlaysBot);
-      console.log(DataCells)
+      console.log(DataCells);
       setNextOorX("X");
       setNewGame(true);
     }
@@ -152,14 +151,14 @@ export const ContextProvider = ({ children }) => {
     let updatedCellList;
     let thisNewGame;
     if (newGame === true) {
-      updatedCellList = (ButtonForXorO(
+      updatedCellList = ButtonForXorO(
         id,
         cellList,
         nextOorX,
         setNextOorX,
         newGame,
         playerVs
-      )).slice(0);
+      ).slice(0);
       if (updatedCellList !== null) {
         setCellList(updatedCellList);
         thisNewGame = Won(updatedCellList, scoreList, setScoreList);
@@ -171,12 +170,9 @@ export const ContextProvider = ({ children }) => {
         thisNewGame === true &&
         updatedCellList !== null
       ) {
-        setCellList (PlayerCpu(
-          updatedCellList,
-          whoPlaysBot,
-          setCellList
-        ));
-        // setCellList(updatedCellList);
+        let cellListForCpu = Array.from(updatedCellList)
+        updatedCellList = PlayerCpu(cellListForCpu, whoPlaysBot, setCellList);
+        setCellList(updatedCellList);
         thisNewGame = Won(updatedCellList, scoreList, setScoreList, newGame);
         setNewGame(thisNewGame);
       }
