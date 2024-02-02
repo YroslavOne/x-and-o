@@ -1,7 +1,7 @@
 import WinningData from "./../WinningData";
 import { v4 as uuidv4 } from "uuid";
 
-function PlayerCpu(cellListForCpu, whoPlaysBot, setCellList) {
+function PlayerCpu(cellListForCpu, whoPlaysBot) {
   let villain;
 
   if (whoPlaysBot === "O") {
@@ -23,20 +23,19 @@ function PlayerCpu(cellListForCpu, whoPlaysBot, setCellList) {
   );
 
   function updateCellList(index) {
-
-    cellListForCpu.map((objAllCell) => {
-      if (objAllCell.id === Number(index+1)){
+    cellListForCpu.forEach((objAllCell) => {
+      if (objAllCell.id === Number(index + 1)) {
         updatedCellList.push({
           id: objAllCell.id,
           value: whoPlaysBot,
           filled: true,
-          background: 'rgb(31,53,64)',
+          background: "rgb(31,53,64)",
           key: uuidv4(),
         });
-      } else{
-        updatedCellList.push(objAllCell)
+      } else {
+        updatedCellList.push(objAllCell);
       }
-    })
+    });
     // updatedCellList = Array.from(cellListForCpu);
 
     // updatedCellList[index].filled = true;
@@ -49,6 +48,7 @@ function PlayerCpu(cellListForCpu, whoPlaysBot, setCellList) {
   if (filterCellsList.length !== 0) {
     if (filterCellsList.length <= 1) {
       if (filterCellsList[0].id !== 5) {
+        console.log("hi")
         updateCellList(4);
       } else {
         updateCellList(8);

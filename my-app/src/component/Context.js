@@ -26,7 +26,7 @@ export const Context = React.createContext({
 });
 
 export const ContextProvider = ({ children }) => {
-  const cells = DataCells.slice();
+  const cells = DataCells;
   // [
   //   {
   //     id: 1,
@@ -144,7 +144,12 @@ export const ContextProvider = ({ children }) => {
   }
 
   function botGoesFirst(cellsList) {
-    setCellList(PlayerCpu(cellsList, "X", setCellList));
+    console.log(cellsList)
+    let cellsListPlayerCpu = PlayerCpu(cellsList, "X")
+    console.log(cellsListPlayerCpu)
+
+    console.log(PlayerCpu(cellsList, "X"))
+    setCellList(PlayerCpu(cellsList, "X"));
   }
 
   function tapOnCell(id) {
@@ -171,7 +176,7 @@ export const ContextProvider = ({ children }) => {
         updatedCellList !== null
       ) {
         let cellListForCpu = Array.from(updatedCellList)
-        updatedCellList = PlayerCpu(cellListForCpu, whoPlaysBot, setCellList);
+        updatedCellList = PlayerCpu(cellListForCpu, whoPlaysBot);
         setCellList(updatedCellList);
         thisNewGame = Won(updatedCellList, scoreList, setScoreList, newGame);
         setNewGame(thisNewGame);

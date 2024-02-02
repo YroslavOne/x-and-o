@@ -23,6 +23,7 @@ function PickPlayer(props) {
     } else {
       setWhoPlaysBot('X');
       setNextOorX('O');
+      console.log(cellList)
       botGoesFirst(cellList);
     }
   }
