@@ -27,72 +27,8 @@ export const Context = React.createContext({
 
 export const ContextProvider = ({ children }) => {
   const cells = DataCells;
-  // [
-  //   {
-  //     id: 1,
-  //     value: null,
-  //     filled: false,
-  //     key: uuidv4(),
-  //     background: 'rgb(31,53,64)',
-  //   },
-  //   {
-  //     id: 2,
-  //     value: null,
-  //     filled: false,
-  //     key: uuidv4(),
-  //     background: 'rgb(31,53,64)',
-  //   },
-  //   {
-  //     id: 3,
-  //     value: null,
-  //     filled: false,
-  //     key: uuidv4(),
-  //     background: 'rgb(31,53,64)',
-  //   },
-  //   {
-  //     id: 4,
-  //     value: null,
-  //     filled: false,
-  //     key: uuidv4(),
-  //     background: 'rgb(31,53,64)',
-  //   },
-  //   {
-  //     id: 5,
-  //     value: null,
-  //     filled: false,
-  //     key: uuidv4(),
-  //     background: 'rgb(31,53,64)',
-  //   },
-  //   {
-  //     id: 6,
-  //     value: null,
-  //     filled: false,
-  //     key: uuidv4(),
-  //     background: 'rgb(31,53,64)',
-  //   },
-  //   {
-  //     id: 7,
-  //     value: null,
-  //     filled: false,
-  //     key: uuidv4(),
-  //     background: 'rgb(31,53,64)',
-  //   },
-  //   {
-  //     id: 8,
-  //     value: null,
-  //     filled: false,
-  //     key: uuidv4(),
-  //     background: 'rgb(31,53,64)',
-  //   },
-  //   {
-  //     id: 9,
-  //     value: null,
-  //     filled: false,
-  //     key: uuidv4(),
-  //     background: 'rgb(31,53,64)',
-  //   },
-  // ];
   let scores = { X: 0, O: 0, deadHeat: 0 };
+
   if (localStorage?.CellList) {
   } else {
     localStorage.CellList = JSON.stringify(cells);
@@ -122,6 +58,7 @@ export const ContextProvider = ({ children }) => {
   const [playerVs, setPlayerVs] = useState(null);
   const [whoPlaysBot, setWhoPlaysBot] = useState(null);
 
+  localStorage.setItem("NextOorX", nextOorX);
   localStorage.setItem("WhoPlaysBot", whoPlaysBot);
   localStorage.Scores = JSON.stringify(scoreList);
   localStorage.PlayerVs = playerVs;
@@ -131,24 +68,16 @@ export const ContextProvider = ({ children }) => {
 
   function playAgain(cellsList) {
     if (whoPlaysBot === "X") {
-      console.log(DataCells);
       botGoesFirst(cellsList);
       setNextOorX("O");
       setNewGame(true);
     } else {
-      console.log(whoPlaysBot);
-      console.log(DataCells);
       setNextOorX("X");
       setNewGame(true);
     }
   }
 
   function botGoesFirst(cellsList) {
-    console.log(cellsList)
-    let cellsListPlayerCpu = PlayerCpu(cellsList, "X")
-    console.log(cellsListPlayerCpu)
-
-    console.log(PlayerCpu(cellsList, "X"))
     setCellList(PlayerCpu(cellsList, "X"));
   }
 
@@ -163,7 +92,7 @@ export const ContextProvider = ({ children }) => {
         setNextOorX,
         newGame,
         playerVs
-      ).slice(0);
+      );
       if (updatedCellList !== null) {
         setCellList(updatedCellList);
         thisNewGame = Won(updatedCellList, scoreList, setScoreList);
@@ -175,7 +104,7 @@ export const ContextProvider = ({ children }) => {
         thisNewGame === true &&
         updatedCellList !== null
       ) {
-        let cellListForCpu = Array.from(updatedCellList)
+        let cellListForCpu = Array.from(updatedCellList);
         updatedCellList = PlayerCpu(cellListForCpu, whoPlaysBot);
         setCellList(updatedCellList);
         thisNewGame = Won(updatedCellList, scoreList, setScoreList, newGame);
@@ -183,8 +112,6 @@ export const ContextProvider = ({ children }) => {
       }
     }
   }
-
-  localStorage.setItem("NextOorX", nextOorX);
 
   return (
     <Context.Provider

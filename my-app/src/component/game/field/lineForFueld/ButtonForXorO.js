@@ -1,16 +1,19 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 function ButtonForXorO(id, cellList, nextOorX, setNextOorX, newGame, playerVs) {
+
   function chekPlayer(valueOorX) {
-    if (playerVs === 'player') {
-      let valueXandO;
-      if (valueOorX === 'X') {
-        valueXandO = 'O';
-        setNextOorX(valueXandO);
-      } else {
-        valueXandO = 'X';
-        setNextOorX(valueXandO);
-      }
+    if (playerVs === "player") {
+      let valueXandO = valueOorX === "X" ? "O" : "X";
+      setNextOorX(valueXandO);
+
+      // if (valueOorX === "X") {
+      //   valueXandO = "O";
+      //   setNextOorX(valueXandO);
+      // } else {
+      //   valueXandO = "X";
+      //   setNextOorX(valueXandO);
+      // }
     }
   }
 
@@ -19,7 +22,7 @@ function ButtonForXorO(id, cellList, nextOorX, setNextOorX, newGame, playerVs) {
   if (newGame === true) {
     cellList.map((objAllCell) => {
       if (objAllCell.id === Number(id)) {
-        if (objAllCell.value === 'X' || objAllCell.value === 'O') {
+        if (objAllCell.value === "X" || objAllCell.value === "O") {
           allCell.push(objAllCell);
           clickedOnAnEmpty = true;
           alert(
@@ -31,7 +34,7 @@ function ButtonForXorO(id, cellList, nextOorX, setNextOorX, newGame, playerVs) {
             id: objAllCell.id,
             value: nextOorX,
             filled: true,
-            background: 'rgb(31,53,64)',
+            background: "rgb(31,53,64)",
             key: uuidv4(),
           });
         }

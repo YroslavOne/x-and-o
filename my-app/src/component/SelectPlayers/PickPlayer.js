@@ -1,7 +1,7 @@
-import { Context } from '../Context';
-import { useContext } from 'react';
+import { Context } from "../Context";
+import { useContext } from "react";
 
-import './pickPlayer.css';
+import "./pickPlayer.css";
 
 function PickPlayer(props) {
   const {
@@ -17,13 +17,12 @@ function PickPlayer(props) {
     setSelectedFirst(value);
     props.setOpenGame(true);
     props.setOpenSelectPlayers(false);
-    if (value === 'X') {
-      setWhoPlaysBot('O');
-      setNextOorX('X');
+    if (value === "X") {
+      setWhoPlaysBot("O");
+      setNextOorX("X");
     } else {
-      setWhoPlaysBot('X');
-      setNextOorX('O');
-      console.log(cellList)
+      setWhoPlaysBot("X");
+      setNextOorX("O");
       botGoesFirst(cellList);
     }
   }
@@ -32,10 +31,10 @@ function PickPlayer(props) {
     <div className="block-pick-player">
       <h3>pick player 1's mark</h3>
       <div className="choice-o-or-x">
-        <button onClick={(e) => selectFirst('X')} className="button-choice-x">
+        <button onClick={(e) => selectFirst("X")} className="button-choice-x">
           <a></a>
         </button>
-        <button onClick={(e) => selectFirst('O')} className="button-choice-o">
+        <button onClick={(e) => selectFirst("O")} className="button-choice-o">
           <a />
         </button>
       </div>

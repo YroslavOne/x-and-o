@@ -3,6 +3,7 @@ import PickPlayer from './SelectPlayers/PickPlayer';
 import { Context } from './Context';
 import './selectPlayers.css';
 
+
 function SelectPlayers(props) {
   const { setPlayerVs } = useContext(Context);
   const [openPickPlayer, setOpenPickPlayer] = useState(false);

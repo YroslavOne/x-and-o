@@ -13,76 +13,35 @@ function Won(cellList, scoreList, setScoreList, setNewGame) {
     updateCellList[idWinner[1] - 1].background = "rgb(179,21,27)";
     updateCellList[idWinner[2] - 1].background = "rgb(179,21,27)";
   }
+
   function score(winner) {
     const newScoreList = { ...scoreList };
 
     newScoreList[winner]++;
     console.log(newScoreList);
     setScoreList(newScoreList);
-    // if (newGame === true) {
-    //   if (winner === 'X') {
-    //     let valueX = scoreList.X + 1;
-    //     setScoreList({
-    //       X: valueX,
-    //       O: scoreList.O,
-    //       deadHeat: scoreList.deadHeat,
-    //     });
-    //     thisNewGame = false;
-    //     setNewGame(false);
-    //   } else {
-    //     if (winner === 'O') {
-    //       let valueO = scoreList.O + 1;
-    //       setScoreList({
-    //         X: scoreList.X,
-    //         O: valueO,
-    //         deadHeat: scoreList.deadHeat,
-    //       });
-    //       thisNewGame = false;
-    //       setNewGame(false);
-    //     } else {
-    //       let valueDeadHeat = scoreList.deadHeat + 1;
-    //       setScoreList({
-    //         X: scoreList.X,
-    //         O: scoreList.O,
-    //         deadHeat: valueDeadHeat,
-    //       });
 
-    //       thisNewGame = false;
-    //       setNewGame(false);
-    //     }
-    //   }
-    // }
     thisNewGame = false;
   }
 
-  let indexForOutput = 0;
   let winnerValue;
   let protectionTriggered = false;
   WinningData.forEach((objWinningData) => {
     let coincidencesForX = 0;
     let coincidencesForO = 0;
     objWinningData.forEach((idWinningData) => {
-      let matchChecking = false;
-
       cellList.forEach((objCellList) => {
         if (objCellList.id === idWinningData) {
           if (objCellList.value === "X") {
             coincidencesForX = coincidencesForX + 1;
-            matchChecking = true;
             winnerValue = "X";
           } else if (objCellList.value === "O") {
             coincidencesForO = coincidencesForO + 1;
-            matchChecking = true;
             winnerValue = "O";
           }
         }
       });
-
-      if (matchChecking === true) {
-        indexForOutput = idWinningData - 1;
-      }
     });
-
     if (
       (coincidencesForO === 3 || coincidencesForX === 3) &&
       protectionTriggered === false

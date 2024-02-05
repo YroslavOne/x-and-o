@@ -7,18 +7,7 @@ function Score() {
   let XPlayer = whoPlaysBot === "X" ? "CPU" : "Player";
   let OPlayer = whoPlaysBot === "X" ? "Player" : "CPU";
 
-  // if (whoPlaysBot === 'X' && playerVs === 'cpu') {
-  //   XPlayer = 'CPU';
-  //   OPlayer = 'Player';
-  // } else {
-  //   if (whoPlaysBot === 'O' && playerVs === 'cpu') {
-  //     XPlayer = 'Player';
-  //     OPlayer = 'CPU';
-  //   } else {
-  //     XPlayer = 'Player1';
-  //     OPlayer = 'Player2';
-  //   }
-  // }
+  
   return (
     <div className="block-score">
       <div className="block-score-border thisx">
