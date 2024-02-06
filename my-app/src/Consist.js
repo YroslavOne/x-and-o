@@ -1,0 +1,1 @@
+export const SCREENS = { GAME: "GAME", SELECT_PLAYERS: "SELECT_PLAYERS" };

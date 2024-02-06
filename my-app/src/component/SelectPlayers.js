@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
-import PickPlayer from './SelectPlayers/PickPlayer';
-import { Context } from './Context';
-import './selectPlayers.css';
-
+import { useContext, useState } from "react";
+import PickPlayer from "./SelectPlayers/PickPlayer";
+import { Context } from "./Context";
+import "./selectPlayers.css";
+import { SCREENS } from "../Consist";
 
 function SelectPlayers(props) {
   const { setPlayerVs } = useContext(Context);
@@ -14,8 +14,16 @@ function SelectPlayers(props) {
       setPlayerVs(value);
     } else {
       setPlayerVs(value);
-      props.setOpenGame(!openedOpenPickPlayer);
-      props.setOpenSelectPlayers(openedOpenPickPlayer);
+
+      switchScreen(props.currentScreen);
+    }
+  }
+
+  function switchScreen(currentScreen) {
+    if (currentScreen === "SELECT_PLAYERS") {
+      props.setCurrentScreen(SCREENS.GAME);
+    } else {
+      props.setCurrentScreen(SCREENS.SELECT_PLAYERS);
     }
   }
 
@@ -25,22 +33,19 @@ function SelectPlayers(props) {
         <div className="logo"></div>
       </div>
       {openPickPlayer && (
-        <PickPlayer
-          setOpenGame={props.setOpenGame}
-          setOpenSelectPlayers={props.setOpenSelectPlayers}
-        />
+        <PickPlayer setCurrentScreen={props.setCurrentScreen} />
       )}
       <div className="block-cpu-or-player">
         <button
           onClick={(e) => chooseWithWhom(e.target.value, true)}
-          value={'cpu'}
+          value={"cpu"}
           className="button-cpu-or-player"
         >
           New Game (Vs CPU)
         </button>
         <button
           onClick={(e) => chooseWithWhom(e.target.value, false)}
-          value={'player'}
+          value={"player"}
           className="button-cpu-or-player"
         >
           New Game (Vs Player)

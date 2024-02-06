@@ -2,6 +2,7 @@ import { Context } from "../Context";
 import { useContext } from "react";
 
 import "./pickPlayer.css";
+import { SCREENS } from "../../Consist";
 
 function PickPlayer(props) {
   const {
@@ -15,8 +16,7 @@ function PickPlayer(props) {
 
   function selectFirst(value) {
     setSelectedFirst(value);
-    props.setOpenGame(true);
-    props.setOpenSelectPlayers(false);
+    props.setCurrentScreen(SCREENS.GAME);
     if (value === "X") {
       setWhoPlaysBot("O");
       setNextOorX("X");

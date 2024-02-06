@@ -129,7 +129,7 @@ export const ContextProvider = ({ children }) => {
         setWhoPlaysBot,
         botGoesFirst,
         setNextOorX,
-        setPlayerVs,
+        setPlayerVs
       }}
     >
       {children}
